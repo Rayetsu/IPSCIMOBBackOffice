@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace IPSCIMOBBackOffice
 {
     [Serializable]
-    class ForeignStudents : INotifyPropertyChanged
+    public class ForeignStudents : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -20,10 +20,10 @@ namespace IPSCIMOBBackOffice
         int id;
         public int Id
         {
-            get { return Id; }
+            get { return id; }
             set
             {
-                Id = value;
+                id = value;
                 OnPropertyChanged(new PropertyChangedEventArgs("Id"));
 
             }
@@ -247,6 +247,12 @@ namespace IPSCIMOBBackOffice
             this.IsFuncionario = foreignStudent.IsFuncionario;
             this.IsDadosVerificados = foreignStudent.IsDadosVerificados;
         }
+
+        //public override string ToString()
+        //{
+        //    return Nome + ", " + Nacionalidade + ", " + Email + ", " + DataDeNascimento + ", " + EscolaIPSECurso + ", " +
+        //        Morada;
+        //}
 
     }
 }

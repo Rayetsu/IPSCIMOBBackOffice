@@ -13,5 +13,14 @@ namespace IPSCIMOBBackOffice
     /// </summary>
     public partial class App : Application
     {
+        private static IPSCIMOBDB ipsCIMOBDB = new IPSCIMOBDB();
+
+        public static IPSCIMOBDB IPSCIMOBDB
+        {
+            get
+            {
+                return ipsCIMOBDB;
+            }
+        }
     }
 }
