@@ -10,26 +10,18 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace IPSCIMOBBackOffice
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Lógica interna para GestorAlunosEstrangeiros.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class GestorAlunosEstrangeiros : Window
     {
-        public MainWindow()
+        public GestorAlunosEstrangeiros()
         {
             InitializeComponent();
-        }
-
-        private void GestorAlunosEstrangeiros_OnClick(object sender, RoutedEventArgs e)
-        {
-            GestorAlunosEstrangeiros gAE = new GestorAlunosEstrangeiros();
-            gAE.Title = "Gestor de Alunos Estrangeiros";
-            gAE.ShowDialog();
         }
     }
 }
