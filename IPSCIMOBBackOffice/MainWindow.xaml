@@ -5,13 +5,14 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:IPSCIMOBBackOffice"
         mc:Ignorable="d"
+        WindowStartupLocation="CenterScreen"
         Title="MainWindow" Height="350" Width="525">
     <Grid>
         <DockPanel>
             <Menu DockPanel.Dock="Top">
                 <Menu IsMainMenu="True" DockPanel.Dock="Top">
                     <MenuItem Header="_Ficheiro">
-                        <MenuItem Header="_Sair"/>
+                        <MenuItem Header="_Sair" Click="Ficheiro_Sair_OnClick"/>
                     </MenuItem>
                     <MenuItem Header="_Tarefa">
                         <MenuItem Header="_Gerir Alunos Estrangeiros" Click="GestorAlunosEstrangeiros_OnClick"/>

@@ -31,5 +31,10 @@ namespace IPSCIMOBBackOffice
             gAE.Title = "Gestor de Alunos Estrangeiros";
             gAE.ShowDialog();
         }
+
+        private void Ficheiro_Sair_OnClick(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
     }
 }

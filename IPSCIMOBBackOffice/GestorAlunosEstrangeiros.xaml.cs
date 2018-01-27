@@ -39,6 +39,8 @@ namespace IPSCIMOBBackOffice
 
             listBoxAlunosEstrangeiros.SelectedItem = listBoxAlunosEstrangeiros.Items[0];
             listBoxAlunosEstrangeiros.IsSynchronizedWithCurrentItem = true;
+
+            DataGridAlunosEstrangeiros.ItemsSource = alunos;
         }
 
         //public string Display
