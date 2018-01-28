@@ -102,21 +102,21 @@ namespace IPSCIMOBBackOffice
             }
         }
 
-        //private void Remove_OnClick(object sender, RoutedEventArgs e)
-        //{
-        //    if (listBoxAvioes.SelectedItem == null)
-        //        return;
+        private void Remove_OnClick(object sender, RoutedEventArgs e)
+        {
+            if (listBoxAlunosEstrangeiros.SelectedItem == null)
+                return;
 
-        //    Aviao aviaoActual = (Aviao)listBoxAvioes.SelectedItem;
+            ForeignStudents alunoAtual = (ForeignStudents)listBoxAlunosEstrangeiros.SelectedItem;
 
-        //    if (MessageBox.Show("Deseseja mesmo apagar a tarefa (Y/N)?", "Apagar tarefa?", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
-        //    {
-        //        App.BDJetJourneys.RemoverAviao(aviaoActual.AviaoID);
-        //        avioes.Remove(aviaoActual);
+            if (MessageBox.Show("Deseseja mesmo apagar este registo (Y/N)?", "Apagar registo?", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+            {
+                App.IPSCIMOBDB.RemoverAlunoEstrangeiro(alunoAtual.Id);
+                alunos.Remove(alunoAtual);
 
-        //        listBoxAvioes.Items.MoveCurrentToFirst();
-        //    }
-        //}
+                listBoxAlunosEstrangeiros.Items.MoveCurrentToFirst();
+            }
+        }
 
         private void cancelButton_Click(object sender, RoutedEventArgs e)
         {
