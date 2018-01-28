@@ -153,30 +153,58 @@ namespace IPSCIMOBBackOffice
 
             cmd.Connection = con;
 
+            string sql = "UPDATE [ForeignStudents] SET [Nome] = @nome, " +
+                "[Nacionalidade] = @nacionalidade, [Email] = @email," +
+                " [DataDeNascimento] = @dataDeNascimento," +
+                " [EscolaIPSECurso] = @escolaIPSECurso, [Morada] = @morada," +
+                " [NumeroDaPorta] = @numeroDaPorta, [Andar] = @andar," +
+                " [Cidade] = @cidade, [Distrito] = @distrito, " +
+                "[CodigoPostal] = @codigoPostal, [Universidade] = @universidade," +
+                " [Telefone] = @telefone, [IsBolseiro] = @isBolseiro," +
+                " [PartilhaMobilidade] = @partilhaMobilidade, " +
+                "[IsFuncionario] = @isFuncionario, [IsDadosVerificados] = @isDadosVerificados WHERE ([Id] = @id)";
 
-            string sql = "UPDATE [ForeignStudents] SET [Id] = N'" +
-                foreignStudent.Id.ToString() + "', [Nome] = " +
-                foreignStudent.Nome + "', [Nacionalidade] = " +
-                foreignStudent.Nacionalidade + "', [Email] = " +
-                foreignStudent.Email + "', [DataDeNascimento] = " +
-                foreignStudent.DataDeNascimento.ToString() + "', [EscolaIPSECurso] = " +
-                foreignStudent.EscolaIPSECurso + "', [Morada] = " +
-                foreignStudent.Morada + "', [NumeroDaPorta] = " +
-                foreignStudent.NumeroDaPorta.ToString() + "', [Andar] = " +
-                foreignStudent.Andar + "', [Cidade] = " +
-                foreignStudent.Cidade + "', [Distrito] = " +
-                foreignStudent.Distrito + "', [CodigoPostal] = " +
-                foreignStudent.CodigoPostal + "', [Universidade] = " +
-                foreignStudent.Universidade + "', [Telefone] = " +
-                foreignStudent.Telefone.ToString() + "', [IsBolseiro] = " +
-                foreignStudent.IsBolseiro.ToString() + "', [PartilhaMobilidade] = " +
-                foreignStudent.PartilhaMobilidade.ToString() + "', [IsFuncionario] = " +
-                foreignStudent.IsFuncionario.ToString() + "', [IsDadosVerificados] = " +
-                foreignStudent.IsDadosVerificados.ToString() +
-                " WHERE ([Id] = " +
-                foreignStudent.Id.ToString() + ")";
+            //string sql = "UPDATE [ForeignStudents] SET [Nome] = '" +
+            //    foreignStudent.Nome + "', [Nacionalidade] = '" +
+            //    foreignStudent.Nacionalidade + "', [Email] = '" +
+            //    foreignStudent.Email + "', [DataDeNascimento] = '" +
+            //    foreignStudent.DataDeNascimento.ToString() + "', [EscolaIPSECurso] = '" +
+            //    foreignStudent.EscolaIPSECurso + "', [Morada] = '" +
+            //    foreignStudent.Morada + "', [NumeroDaPorta] = " +
+            //    foreignStudent.NumeroDaPorta.ToString() + ", [Andar] = '" +
+            //    foreignStudent.Andar + "', [Cidade] = '" +
+            //    foreignStudent.Cidade + "', [Distrito] = '" +
+            //    foreignStudent.Distrito + "', [CodigoPostal] = '" +
+            //    foreignStudent.CodigoPostal + "', [Universidade] = '" +
+            //    foreignStudent.Universidade + "', [Telefone] = " +
+            //    foreignStudent.Telefone.ToString() + ", [IsBolseiro] = '" +
+            //    foreignStudent.IsBolseiro.ToString() + "', [PartilhaMobilidade] = '" +
+            //    foreignStudent.PartilhaMobilidade.ToString() + "', [IsFuncionario] = '" +
+            //    foreignStudent.IsFuncionario.ToString() + "', [IsDadosVerificados] = '" +
+            //    foreignStudent.IsDadosVerificados.ToString() +
+            //    "' WHERE ([Id] = " +
+            //    foreignStudent.Id.ToString() + ")";
 
             cmd.CommandText = sql;
+
+            cmd.Parameters.AddWithValue("@nome", foreignStudent.Nome);
+            cmd.Parameters.AddWithValue("@nacionalidade", foreignStudent.Nacionalidade);
+            cmd.Parameters.AddWithValue("@email", foreignStudent.Email);
+            cmd.Parameters.AddWithValue("@dataDeNascimento", foreignStudent.DataDeNascimento.ToString());
+            cmd.Parameters.AddWithValue("@escolaIPSECurso", foreignStudent.EscolaIPSECurso);
+            cmd.Parameters.AddWithValue("@morada", foreignStudent.Morada);
+            cmd.Parameters.AddWithValue("@numeroDaPorta", foreignStudent.NumeroDaPorta.ToString());
+            cmd.Parameters.AddWithValue("@andar", foreignStudent.Andar);
+            cmd.Parameters.AddWithValue("@cidade", foreignStudent.Cidade);
+            cmd.Parameters.AddWithValue("@distrito", foreignStudent.Distrito);
+            cmd.Parameters.AddWithValue("@codigoPostal", foreignStudent.CodigoPostal);
+            cmd.Parameters.AddWithValue("@universidade", foreignStudent.Universidade);
+            cmd.Parameters.AddWithValue("@telefone", foreignStudent.Telefone.ToString());
+            cmd.Parameters.AddWithValue("@isBolseiro", foreignStudent.IsBolseiro.ToString());
+            cmd.Parameters.AddWithValue("@partilhaMobilidade", foreignStudent.PartilhaMobilidade.ToString());
+            cmd.Parameters.AddWithValue("@isFuncionario", foreignStudent.IsFuncionario.ToString());
+            cmd.Parameters.AddWithValue("@isDadosVerificados", foreignStudent.IsDadosVerificados.ToString());
+            cmd.Parameters.AddWithValue("@id", foreignStudent.Id.ToString());
 
             int regs = 0;
 

@@ -43,13 +43,7 @@ namespace IPSCIMOBBackOffice
             DataGridAlunosEstrangeiros.ItemsSource = alunos;
         }
 
-        //public string Display
-        //{
-        //    get
-        //    {
-        //        return String.Format("{0} - {1}",alunos. , Name);
-        //    }
-        //}
+        
 
         private void Add_OnClick(object sender, RoutedEventArgs e)
         {
@@ -71,21 +65,42 @@ namespace IPSCIMOBBackOffice
             //listBoxAvioes.Items.Add(aviaoAtual);
         }
 
-        //private void Edit_OnClick(object sender, RoutedEventArgs e)
-        //{
-        //    if (listBoxAvioes.SelectedItem == null)
-        //        return;
+        private void Edit_OnClick(object sender, RoutedEventArgs e)
+        {
+            if (listBoxAlunosEstrangeiros.SelectedItem == null)
+                return;
 
-        //    Aviao aviaoActual = (Aviao)listBoxAvioes.SelectedItem;
+            ForeignStudents alunoAtual = (ForeignStudents)listBoxAlunosEstrangeiros.SelectedItem as ForeignStudents;
 
-        //    EditAviao eA = new EditAviao(new Aviao(aviaoActual));
-        //    if (eA.ShowDialog() == true && eA.Aviao != aviaoActual)
-        //    {
-        //        App.BDJetJourneys.ActualizarAviao(eA.Aviao);
-        //        aviaoActual.Descricao = eA.Aviao.Descricao;
-        //        aviaoActual.Preco = eA.Aviao.Preco;
-        //    }
-        //}
+            if (alunoAtual == null)
+                return;
+
+            EditAlunoEstrangeiro eA = new EditAlunoEstrangeiro(new ForeignStudents(alunoAtual));
+            eA.Title = "Editar Dados do Aluno Estrangeiro";
+            if (eA.ShowDialog() == true && eA.ForeignStudent != alunoAtual)
+            {
+                
+                alunoAtual.Nome = eA.ForeignStudent.Nome;
+                alunoAtual.Nacionalidade = eA.ForeignStudent.Nacionalidade;
+                alunoAtual.Email = eA.ForeignStudent.Email;
+                alunoAtual.DataDeNascimento = eA.ForeignStudent.DataDeNascimento;
+                alunoAtual.EscolaIPSECurso = eA.ForeignStudent.EscolaIPSECurso;
+                alunoAtual.Morada = eA.ForeignStudent.Morada;
+                alunoAtual.NumeroDaPorta = eA.ForeignStudent.NumeroDaPorta;
+                alunoAtual.Andar = eA.ForeignStudent.Andar;
+                alunoAtual.Cidade = eA.ForeignStudent.Cidade;
+                alunoAtual.Distrito = eA.ForeignStudent.Distrito;
+                alunoAtual.CodigoPostal = eA.ForeignStudent.CodigoPostal;
+                alunoAtual.Universidade = eA.ForeignStudent.Universidade;
+                alunoAtual.Telefone = eA.ForeignStudent.Telefone;
+                alunoAtual.IsBolseiro = eA.ForeignStudent.IsBolseiro;
+                alunoAtual.PartilhaMobilidade = eA.ForeignStudent.PartilhaMobilidade;
+                alunoAtual.IsFuncionario = eA.ForeignStudent.IsFuncionario;
+                alunoAtual.IsDadosVerificados = eA.ForeignStudent.IsDadosVerificados;
+
+                App.IPSCIMOBDB.ActualizarAlunosEstrangeiros(eA.ForeignStudent);
+            }
+        }
 
         //private void Remove_OnClick(object sender, RoutedEventArgs e)
         //{
