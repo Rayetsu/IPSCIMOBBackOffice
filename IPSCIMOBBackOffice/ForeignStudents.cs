@@ -158,7 +158,7 @@ namespace IPSCIMOBBackOffice
             set
             {
                 universidade = value;
-                OnPropertyChanged(new PropertyChangedEventArgs("Distrito"));
+                OnPropertyChanged(new PropertyChangedEventArgs("Universidade"));
             }
         }
 
@@ -217,7 +217,7 @@ namespace IPSCIMOBBackOffice
             set
             {
                 isDadosVerificados = value;
-                OnPropertyChanged(new PropertyChangedEventArgs("Telefone"));
+                OnPropertyChanged(new PropertyChangedEventArgs("IsDadosVerificados"));
 
             }
         }

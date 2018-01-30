@@ -54,6 +54,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="ApplicationUser.cs" />
     <Page Include="AddAlunoEstrangeiro.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -63,6 +64,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="GestorAlunosEstrangeiros.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GestorUtilizadores.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -83,6 +88,9 @@
     <Compile Include="ForeignStudents.cs" />
     <Compile Include="GestorAlunosEstrangeiros.xaml.cs">
       <DependentUpon>GestorAlunosEstrangeiros.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GestorUtilizadores.xaml.cs">
+      <DependentUpon>GestorUtilizadores.xaml</DependentUpon>
     </Compile>
     <Compile Include="IPSCIMOBDB.cs" />
     <Compile Include="MainWindow.xaml.cs">

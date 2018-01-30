@@ -32,6 +32,13 @@ namespace IPSCIMOBBackOffice
             gAE.ShowDialog();
         }
 
+        private void GestorUtilizadores_OnClick(object sender, RoutedEventArgs e)
+        {
+            GestorUtilizadores gU = new GestorUtilizadores();
+            gU.Title = "Gestor de Utilizadores";
+            gU.ShowDialog();
+        }
+
         private void Ficheiro_Sair_OnClick(object sender, RoutedEventArgs e)
         {
             this.Close();

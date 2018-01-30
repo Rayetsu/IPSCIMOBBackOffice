@@ -8,7 +8,7 @@
         WindowStartupLocation="CenterScreen" 
         Title="Gestor de Alunos Estrangeiros" Height="500" Width="1000" ResizeMode="CanResize">
 
-    <Grid Name="FormServicos" Margin="10" DockPanel.Dock="Left">
+    <Grid Name="FormGestorAlunosEstrangeiros" Margin="10" DockPanel.Dock="Left">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>

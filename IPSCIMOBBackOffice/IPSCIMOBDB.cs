@@ -225,5 +225,79 @@ namespace IPSCIMOBBackOffice
 
             MessageBox.Show(regs + " registo actualizado");
         }
+
+
+        public ObservableCollection<ApplicationUser> GetUsers()
+        {
+            ObservableCollection<ApplicationUser> users = new ObservableCollection<ApplicationUser>();
+
+            SqlConnection con = new SqlConnection(connectionString);
+            SqlCommand cmd = new SqlCommand();
+
+            cmd.Connection = con;
+
+            string sql = "SELECT * FROM AspNetUsers";
+
+            cmd.CommandText = sql;
+
+            try
+            {
+                con.Open();
+
+                SqlDataReader dr;
+
+                dr = cmd.ExecuteReader();
+
+                while (dr.Read())
+                {
+                    ApplicationUser c = new ApplicationUser();
+
+                    c.Id = (int)dr["Id"];
+                    c.Nome = (string)dr["Nome"];
+                    c.Nacionalidade = (string)dr["Nacionalidade"];
+                    c.Email = (string)dr["Email"];
+                    c.DataDeNascimento = (DateTime)dr["DataDeNascimento"];
+                    c.CandidaturaAtual = (int)dr["CandidaturaAtual"];
+                    c.Morada = (string)dr["Morada"];
+                    c.NumeroDaPorta = (int)dr["NumeroDaPorta"];
+                    c.Andar = (string)dr["Andar"];
+                    c.Cidade = (string)dr["Cidade"];
+                    c.Distrito = (string)dr["Distrito"];
+                    c.CodigoPostal = (string)dr["CodigoPostal"];
+                    c.NumeroDoBI = (int)dr["NumeroDoBI"];
+                    c.Telefone = (int)dr["Telefone"];
+                    c.NumeroInterno = (int)dr["NumeroInterno"];
+                    c.PartilhaMobilidade = (bool)dr["PartilhaMobilidade"];
+                    c.IsFuncionario = (bool)dr["IsFuncionario"];
+                    c.IsDadosVerificados = (bool)dr["IsDadosVerificados"];
+                    c.NormalizedEmail = (string)dr["NormalizedEmail"];
+                    c.NormalizedUserName = (string)dr["NormalizedUserName"];
+                    c.AccessFailedCount = (int)dr["AccessFailedCount"];
+                    c.ConcurrencyStamp = (string)dr["ConcurrencyStamp"];
+                    c.EmailConfirmed = (bool)dr["EmailConfirmed"];
+                    c.LockoutEnabled = (bool)dr["LockoutEnabled"];
+                    c.LockoutEnd = (DateTimeOffset)dr["LockoutEnd"];
+                    c.PasswordHash = (string)dr["PasswordHash"];
+                    c.PhoneNumber = (string)dr["PhoneNumber"];
+                    c.PhoneNumberConfirmed = (bool)dr["PhoneNumberConfirmed"];
+                    c.SecurityStamp = (string)dr["SecurityStamp"];
+                    c.TwoFactorEnabled = (bool)dr["TwoFactorEnabled"];
+                    c.UserName = (string)dr["UserName"];
+
+                    users.Add(c);
+                }
+
+            }
+            catch (Exception exc)
+            {
+                MessageBox.Show(exc.Message);
+            }
+            finally
+            {
+                con.Close();
+            }
+
+            return users;
+        }
     }
 }
