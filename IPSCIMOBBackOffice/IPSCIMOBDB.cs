@@ -289,6 +289,95 @@ namespace IPSCIMOBBackOffice
             return users;
         }
 
+        public void RemoverUtilizador(int numeroInterno)
+        {
+            SqlConnection con = new SqlConnection(connectionString);
+            SqlCommand cmd = new SqlCommand();
+
+            cmd.Connection = con;
+
+            string sql = "DELETE FROM [AspNetUsers] WHERE ([NumeroInterno] = " + numeroInterno + ")";
+            cmd.CommandText = sql;
+
+            int regs = 0;
+
+            try
+            {
+                con.Open();
+
+                regs = cmd.ExecuteNonQuery();
+            }
+            catch (Exception exc)
+            {
+                MessageBox.Show(exc.Message);
+            }
+            finally
+            {
+                con.Close();
+            }
+
+            MessageBox.Show(regs + " registo apagado");
+        }
+
+        public void ActualizarUtilizador(ApplicationUser user)
+        {
+            SqlConnection con = new SqlConnection(connectionString);
+            SqlCommand cmd = new SqlCommand();
+
+            cmd.Connection = con;
+
+            string sql = "UPDATE [AspNetUsers] SET [Nome] = @nome, " +
+                "[NumeroInterno] = @numeroInterno, [Email] = @email," +
+                "[Nacionalidade] = @nacionalidade," +
+                " [DataDeNascimento] = @dataDeNascimento," +
+                " [NumeroDoBI] = @numeroDoBI, [Morada] = @morada," +
+                " [NumeroDaPorta] = @numeroDaPorta, [Andar] = @andar," +
+                " [Cidade] = @cidade, [Distrito] = @distrito, " +
+                "[CodigoPostal] = @codigoPostal," +
+                " [Telefone] = @telefone," +
+                " [PartilhaMobilidade] = @partilhaMobilidade, " +
+                "[IsFuncionario] = @isFuncionario, [IsDadosVerificados] = @isDadosVerificados WHERE ([Id] = @id)";
+
+            cmd.CommandText = sql;
+
+            cmd.Parameters.AddWithValue("@nome", user.Nome);
+            cmd.Parameters.AddWithValue("@nacionalidade", user.Nacionalidade);
+            cmd.Parameters.AddWithValue("@email", user.Email);
+            cmd.Parameters.AddWithValue("@dataDeNascimento", user.DataDeNascimento.ToString());
+            cmd.Parameters.AddWithValue("@numeroDoBI", user.NumeroDoBI);
+            cmd.Parameters.AddWithValue("@numeroInterno", user.NumeroInterno);
+            cmd.Parameters.AddWithValue("@morada", user.Morada);
+            cmd.Parameters.AddWithValue("@numeroDaPorta", user.NumeroDaPorta.ToString());
+            cmd.Parameters.AddWithValue("@andar", user.Andar);
+            cmd.Parameters.AddWithValue("@cidade", user.Cidade);
+            cmd.Parameters.AddWithValue("@distrito", user.Distrito);
+            cmd.Parameters.AddWithValue("@codigoPostal", user.CodigoPostal);
+            cmd.Parameters.AddWithValue("@telefone", user.Telefone.ToString());
+            cmd.Parameters.AddWithValue("@partilhaMobilidade", user.PartilhaMobilidade.ToString());
+            cmd.Parameters.AddWithValue("@isFuncionario", user.IsFuncionario.ToString());
+            cmd.Parameters.AddWithValue("@isDadosVerificados", user.IsDadosVerificados.ToString());
+            cmd.Parameters.AddWithValue("@id", user.Id);
+
+            int regs = 0;
+
+            try
+            {
+                con.Open();
+
+                regs = cmd.ExecuteNonQuery();
+            }
+            catch (Exception exc)
+            {
+                MessageBox.Show(exc.Message);
+            }
+            finally
+            {
+                con.Close();
+            }
+
+            MessageBox.Show(regs + " registo actualizado");
+        }
+
         public ObservableCollection<Sugestao> GetSugestoes()
         {
             ObservableCollection<Sugestao> sugestoes = new ObservableCollection<Sugestao>();
@@ -464,5 +553,7 @@ namespace IPSCIMOBBackOffice
 
             MessageBox.Show(regs + " registo actualizado");
         }
+
+        
     }
 }

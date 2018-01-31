@@ -43,6 +43,44 @@ namespace IPSCIMOBBackOffice
             this.DialogResult = false;
         }
 
+        private void Edit_OnClick(object sender, RoutedEventArgs e)
+        {
+            if (listBoxUtilizadores.SelectedItem == null)
+                return;
+
+            ApplicationUser userAtual = (ApplicationUser)listBoxUtilizadores.SelectedItem as ApplicationUser;
+
+            if (userAtual == null)
+                return;
+
+            EditUtilizador eS = new EditUtilizador(userAtual)
+            {
+                Title = "Editar Utilizador"
+            };
+            if (eS.ShowDialog() == true)
+            {
+
+
+                App.IPSCIMOBDB.ActualizarUtilizador(eS.Utilizador);
+            }
+        }
+
+        private void Remove_OnClick(object sender, RoutedEventArgs e)
+        {
+            if (listBoxUtilizadores.SelectedItem == null)
+                return;
+
+            ApplicationUser userAtual = (ApplicationUser)listBoxUtilizadores.SelectedItem as ApplicationUser;
+
+            if (MessageBox.Show("Deseseja mesmo apagar este registo (Y/N)?", "Apagar registo?", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+            {
+                App.IPSCIMOBDB.RemoverUtilizador(userAtual.NumeroInterno);
+                users.Remove(userAtual);
+
+                listBoxUtilizadores.Items.MoveCurrentToFirst();
+            }
+        }
+
         private void ListBoxUtilizadores_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             ApplicationUser userAtual = listBoxUtilizadores.SelectedItem as ApplicationUser;

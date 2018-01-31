@@ -65,19 +65,22 @@
     <Compile Include="EditSugestao.xaml.cs">
       <DependentUpon>EditSugestao.xaml</DependentUpon>
     </Compile>
+    <Compile Include="EditUtilizador.xaml.cs">
+      <DependentUpon>EditUtilizador.xaml</DependentUpon>
+    </Compile>
     <Compile Include="GestorSugestoes.xaml.cs">
       <DependentUpon>GestorSugestoes.xaml</DependentUpon>
     </Compile>
     <Compile Include="Sugestao.cs" />
-    <Page Include="AddAlunoEstrangeiro.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="EditAlunoEstrangeiro.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="EditSugestao.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="EditUtilizador.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -97,9 +100,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Compile Include="AddAlunoEstrangeiro.xaml.cs">
-      <DependentUpon>AddAlunoEstrangeiro.xaml</DependentUpon>
-    </Compile>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>

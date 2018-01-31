@@ -15,20 +15,19 @@ using System.Windows.Shapes;
 namespace IPSCIMOBBackOffice
 {
     /// <summary>
-    /// Lógica interna para AddAlunoEstrangeiro.xaml
+    /// Interaction logic for EditUtilizador.xaml
     /// </summary>
-    public partial class AddAlunoEstrangeiro : Window
+    public partial class EditUtilizador : Window
     {
-        public ForeignStudents ForeignStudent { get; set; }
-        public AddAlunoEstrangeiro()
+        public ApplicationUser Utilizador { get; set; }
+        public EditUtilizador(ApplicationUser utilizador = null)
         {
             InitializeComponent();
-
-            ForeignStudent = new ForeignStudents();
-            FormAlunoEstrangeiroAdd.DataContext = ForeignStudent;
+            Utilizador = utilizador ?? new ApplicationUser();
+            FormUtilizadorEdit.DataContext = Utilizador;
         }
 
-        private void Add_OnClick(object sender, RoutedEventArgs e)
+        private void Edit_OnClick(object sender, RoutedEventArgs e)
         {
             DialogResult = true;
         }
