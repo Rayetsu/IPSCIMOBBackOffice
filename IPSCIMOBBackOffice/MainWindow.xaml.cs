@@ -53,6 +53,13 @@ namespace IPSCIMOBBackOffice
             gI.ShowDialog();
         }
 
+        private void GestorIntituicao_OnClick(object sender, RoutedEventArgs e)
+        {
+            GestorInstituicoes gI = new GestorInstituicoes();
+            gI.Title = "Gestor de Instituições Parceiras";
+            gI.ShowDialog();
+        }
+
         private void Ficheiro_Sair_OnClick(object sender, RoutedEventArgs e)
         {
             this.Close();

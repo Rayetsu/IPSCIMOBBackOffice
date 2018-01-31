@@ -690,5 +690,169 @@ namespace IPSCIMOBBackOffice
             MessageBox.Show(regs + " registo actualizado");
         }
 
+
+        public ObservableCollection<InstituicaoParceira> GetInstituicoes()
+        {
+            ObservableCollection<InstituicaoParceira> instituicao = new ObservableCollection<InstituicaoParceira>();
+
+            SqlConnection con = new SqlConnection(connectionString);
+            SqlCommand cmd = new SqlCommand();
+
+            cmd.Connection = con;
+
+            string sql = "SELECT * FROM InstituicaoParceiraModel";
+
+            cmd.CommandText = sql;
+
+            try
+            {
+                con.Open();
+
+                SqlDataReader dr;
+
+                dr = cmd.ExecuteReader();
+
+                while (dr.Read())
+                {
+                    InstituicaoParceira c = new InstituicaoParceira();
+
+                    c.InstituicaoParceiraID = (int)dr["InformacaoGeralID"];
+                    c.Nome = (string)dr["Nome"];
+                    c.Pais = (string)dr["Pais"];
+                    c.Cidade = (string)dr["Cidade"];
+                    c.ProgramaNome = (string)dr["ProgramaNome"];
+
+                    instituicao.Add(c);
+                }
+
+            }
+            catch (Exception exc)
+            {
+                MessageBox.Show(exc.Message);
+            }
+            finally
+            {
+                con.Close();
+            }
+
+            return instituicao;
+        }
+
+
+        public int InserirInstituicao(InstituicaoParceira instituicao)
+        {
+            int newId = -1;
+
+            SqlConnection con = new SqlConnection(connectionString);
+            SqlCommand cmd = new SqlCommand();
+
+            cmd.Connection = con;
+
+            string sqlInsert = "INSERT INTO [InstituicaoParceiraModel] ([Nome], [Pais], [Cidade], [ProgramaNome]) VALUES ('" + instituicao.Nome + "', '" + instituicao.Pais + "', '" + instituicao.Cidade + "', '" + instituicao.ProgramaNome + "')";
+            cmd.CommandText = sqlInsert;
+
+            string sqlSelect = "SELECT InstituicaoParceiraID, Nome, Pais, Cidade, ProgramaNome FROM InstituicaoParceiraModel WHERE (InstituicaoParceiraID = SCOPE_IDENTITY())";
+
+            int regs = 0;
+
+            try
+            {
+                con.Open();
+
+                regs = cmd.ExecuteNonQuery();
+
+                SqlDataReader dr;
+                cmd.CommandText = sqlSelect;
+                dr = cmd.ExecuteReader();
+
+                if (dr.Read())
+                    newId = (int)dr["InstituicaoParceiraID"];
+            }
+            catch (Exception exc)
+            {
+                MessageBox.Show(exc.Message);
+            }
+            finally
+            {
+                con.Close();
+            }
+
+            MessageBox.Show(regs + " registo adicionado (" + newId + ")");
+
+            return newId;
+        }
+
+        public void RemoverInstituicao(int id)
+        {
+            SqlConnection con = new SqlConnection(connectionString);
+            SqlCommand cmd = new SqlCommand();
+
+            cmd.Connection = con;
+
+            string sql = "DELETE FROM [InstituicaoParceiraModel] WHERE ([InstituicaoParceiraID] = " + id.ToString() + ")";
+            cmd.CommandText = sql;
+
+            int regs = 0;
+
+            try
+            {
+                con.Open();
+
+                regs = cmd.ExecuteNonQuery();
+            }
+            catch (Exception exc)
+            {
+                MessageBox.Show(exc.Message);
+            }
+            finally
+            {
+                con.Close();
+            }
+
+            MessageBox.Show(regs + " registo apagado");
+        }
+
+        public void ActualizarInstituicao(InstituicaoParceira instituicao)
+        {
+            SqlConnection con = new SqlConnection(connectionString);
+            SqlCommand cmd = new SqlCommand();
+
+            cmd.Connection = con;
+
+            string sql = "UPDATE [InstituicaoParceiraModel] SET [Nome] = @nome, " +
+                "[Pais] = @pais, " +
+                "[Cidade] = @cidade, " +
+                "[ProgramaNome] = @programaNome  WHERE ([InstituicaoParceiraID] = @id)";
+
+
+            cmd.CommandText = sql;
+
+            cmd.Parameters.AddWithValue("@nome", instituicao.Nome);
+            cmd.Parameters.AddWithValue("@pais", instituicao.Pais);
+            cmd.Parameters.AddWithValue("@programaNome", instituicao.ProgramaNome);
+            cmd.Parameters.AddWithValue("@id", instituicao.InstituicaoParceiraID);
+
+            int regs = 0;
+
+            try
+            {
+                con.Open();
+
+                regs = cmd.ExecuteNonQuery();
+            }
+            catch (Exception exc)
+            {
+                MessageBox.Show(exc.Message);
+            }
+            finally
+            {
+                con.Close();
+            }
+
+            MessageBox.Show(regs + " registo actualizado");
+        }
+
     }
 }
+    
+

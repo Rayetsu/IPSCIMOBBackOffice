@@ -65,6 +65,9 @@
     <Compile Include="EditInformacoes.xaml.cs">
       <DependentUpon>EditInformacoes.xaml</DependentUpon>
     </Compile>
+    <Compile Include="EditInstituicao.xaml.cs">
+      <DependentUpon>EditInstituicao.xaml</DependentUpon>
+    </Compile>
     <Compile Include="EditSugestao.xaml.cs">
       <DependentUpon>EditSugestao.xaml</DependentUpon>
     </Compile>
@@ -73,6 +76,9 @@
     </Compile>
     <Compile Include="GestorInformacoes.xaml.cs">
       <DependentUpon>GestorInformacoes.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GestorInstituicoes.xaml.cs">
+      <DependentUpon>GestorInstituicoes.xaml</DependentUpon>
     </Compile>
     <Compile Include="GestorSugestoes.xaml.cs">
       <DependentUpon>GestorSugestoes.xaml</DependentUpon>
@@ -85,6 +91,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="EditInformacoes.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="EditInstituicao.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -101,6 +111,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="GestorInformacoes.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GestorInstituicoes.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
