@@ -47,7 +47,8 @@ namespace IPSCIMOBBackOffice
 
         private void Add_OnClick(object sender, RoutedEventArgs e)
         {
-            AddAlunoEstrangeiro aE = new AddAlunoEstrangeiro();
+            EditAlunoEstrangeiro aE = new EditAlunoEstrangeiro();
+
             if (aE.ShowDialog() == true)
             {
                 int id = App.IPSCIMOBDB.InserirAlunoEstrangeiro(aE.ForeignStudent);
@@ -75,28 +76,31 @@ namespace IPSCIMOBBackOffice
             if (alunoAtual == null)
                 return;
 
-            EditAlunoEstrangeiro eA = new EditAlunoEstrangeiro(new ForeignStudents(alunoAtual));
+            EditAlunoEstrangeiro eA = new EditAlunoEstrangeiro(alunoAtual);
+ //           EditAlunoEstrangeiro eA = new EditAlunoEstrangeiro(new ForeignStudents(alunoAtual));
             eA.Title = "Editar Dados do Aluno Estrangeiro";
-            if (eA.ShowDialog() == true && eA.ForeignStudent != alunoAtual)
-            {
-                
-                alunoAtual.Nome = eA.ForeignStudent.Nome;
-                alunoAtual.Nacionalidade = eA.ForeignStudent.Nacionalidade;
-                alunoAtual.Email = eA.ForeignStudent.Email;
-                alunoAtual.DataDeNascimento = eA.ForeignStudent.DataDeNascimento;
-                alunoAtual.EscolaIPSECurso = eA.ForeignStudent.EscolaIPSECurso;
-                alunoAtual.Morada = eA.ForeignStudent.Morada;
-                alunoAtual.NumeroDaPorta = eA.ForeignStudent.NumeroDaPorta;
-                alunoAtual.Andar = eA.ForeignStudent.Andar;
-                alunoAtual.Cidade = eA.ForeignStudent.Cidade;
-                alunoAtual.Distrito = eA.ForeignStudent.Distrito;
-                alunoAtual.CodigoPostal = eA.ForeignStudent.CodigoPostal;
-                alunoAtual.Universidade = eA.ForeignStudent.Universidade;
-                alunoAtual.Telefone = eA.ForeignStudent.Telefone;
-                alunoAtual.IsBolseiro = eA.ForeignStudent.IsBolseiro;
-                alunoAtual.PartilhaMobilidade = eA.ForeignStudent.PartilhaMobilidade;
-                alunoAtual.IsFuncionario = eA.ForeignStudent.IsFuncionario;
-                alunoAtual.IsDadosVerificados = eA.ForeignStudent.IsDadosVerificados;
+//            if (eA.ShowDialog() == true && eA.ForeignStudent != alunoAtual)
+            if (eA.ShowDialog() == true)
+                {
+
+
+                //alunoAtual.Nome = eA.ForeignStudent.Nome;
+                //alunoAtual.Nacionalidade = eA.ForeignStudent.Nacionalidade;
+                //alunoAtual.Email = eA.ForeignStudent.Email;
+                //alunoAtual.DataDeNascimento = eA.ForeignStudent.DataDeNascimento;
+                //alunoAtual.EscolaIPSECurso = eA.ForeignStudent.EscolaIPSECurso;
+                //alunoAtual.Morada = eA.ForeignStudent.Morada;
+                //alunoAtual.NumeroDaPorta = eA.ForeignStudent.NumeroDaPorta;
+                //alunoAtual.Andar = eA.ForeignStudent.Andar;
+                //alunoAtual.Cidade = eA.ForeignStudent.Cidade;
+                //alunoAtual.Distrito = eA.ForeignStudent.Distrito;
+                //alunoAtual.CodigoPostal = eA.ForeignStudent.CodigoPostal;
+                //alunoAtual.Universidade = eA.ForeignStudent.Universidade;
+                //alunoAtual.Telefone = eA.ForeignStudent.Telefone;
+                //alunoAtual.IsBolseiro = eA.ForeignStudent.IsBolseiro;
+                //alunoAtual.PartilhaMobilidade = eA.ForeignStudent.PartilhaMobilidade;
+                //alunoAtual.IsFuncionario = eA.ForeignStudent.IsFuncionario;
+                //alunoAtual.IsDadosVerificados = eA.ForeignStudent.IsDadosVerificados;
 
                 App.IPSCIMOBDB.ActualizarAlunosEstrangeiros(eA.ForeignStudent);
             }

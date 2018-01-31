@@ -24,28 +24,28 @@ namespace IPSCIMOBBackOffice
         {
             InitializeComponent();
 
-            ForeignStudent = new ForeignStudents();
+            ForeignStudent = foreignStudent==null ? new ForeignStudents() : foreignStudent;
 
-            if (foreignStudent != null)
-            {
-                ForeignStudent.Nome = foreignStudent.Nome;
-                ForeignStudent.Nacionalidade = foreignStudent.Nacionalidade;
-                ForeignStudent.Email = foreignStudent.Email;
-                ForeignStudent.DataDeNascimento = foreignStudent.DataDeNascimento;
-                ForeignStudent.EscolaIPSECurso = foreignStudent.EscolaIPSECurso;
-                ForeignStudent.Morada = foreignStudent.Morada;
-                ForeignStudent.NumeroDaPorta = foreignStudent.NumeroDaPorta;
-                ForeignStudent.Andar = foreignStudent.Andar;
-                ForeignStudent.Cidade = foreignStudent.Cidade;
-                ForeignStudent.Distrito = foreignStudent.Distrito;
-                ForeignStudent.CodigoPostal = foreignStudent.CodigoPostal;
-                ForeignStudent.Universidade = foreignStudent.Universidade;
-                ForeignStudent.Telefone = foreignStudent.Telefone;
-                ForeignStudent.IsBolseiro = foreignStudent.IsBolseiro;
-                ForeignStudent.PartilhaMobilidade = foreignStudent.PartilhaMobilidade;
-                ForeignStudent.IsFuncionario = foreignStudent.IsFuncionario;
-                ForeignStudent.IsDadosVerificados = foreignStudent.IsDadosVerificados;
-            }
+            //if (foreignStudent != null)
+            //{
+            //    ForeignStudent.Nome = foreignStudent.Nome;
+            //    ForeignStudent.Nacionalidade = foreignStudent.Nacionalidade;
+            //    ForeignStudent.Email = foreignStudent.Email;
+            //    ForeignStudent.DataDeNascimento = foreignStudent.DataDeNascimento;
+            //    ForeignStudent.EscolaIPSECurso = foreignStudent.EscolaIPSECurso;
+            //    ForeignStudent.Morada = foreignStudent.Morada;
+            //    ForeignStudent.NumeroDaPorta = foreignStudent.NumeroDaPorta;
+            //    ForeignStudent.Andar = foreignStudent.Andar;
+            //    ForeignStudent.Cidade = foreignStudent.Cidade;
+            //    ForeignStudent.Distrito = foreignStudent.Distrito;
+            //    ForeignStudent.CodigoPostal = foreignStudent.CodigoPostal;
+            //    ForeignStudent.Universidade = foreignStudent.Universidade;
+            //    ForeignStudent.Telefone = foreignStudent.Telefone;
+            //    ForeignStudent.IsBolseiro = foreignStudent.IsBolseiro;
+            //    ForeignStudent.PartilhaMobilidade = foreignStudent.PartilhaMobilidade;
+            //    ForeignStudent.IsFuncionario = foreignStudent.IsFuncionario;
+            //    ForeignStudent.IsDadosVerificados = foreignStudent.IsDadosVerificados;
+            //}
 
             FormAlunoEstrangeiroEdit.DataContext = ForeignStudent;
         }

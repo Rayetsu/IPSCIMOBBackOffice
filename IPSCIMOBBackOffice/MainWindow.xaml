@@ -17,6 +17,7 @@
                     <MenuItem Header="_Tarefa">
                         <MenuItem Header="_Gerir Alunos Estrangeiros" Click="GestorAlunosEstrangeiros_OnClick"/>
                         <MenuItem Header="_Gerir Utilizadores" Click="GestorUtilizadores_OnClick"/>
+                        <MenuItem Header="_Gerir Sugestões" Click="GestorSugestoes_OnClick"/>
                     </MenuItem>
                 </Menu>
             </Menu>

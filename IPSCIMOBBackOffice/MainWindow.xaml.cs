@@ -39,9 +39,18 @@ namespace IPSCIMOBBackOffice
             gU.ShowDialog();
         }
 
+        private void GestorSugestoes_OnClick(object sender, RoutedEventArgs e)
+        {
+            GestorSugestoes gU = new GestorSugestoes();
+            gU.Title = "Gestor de Sugestões";
+            gU.ShowDialog();
+        }
+
         private void Ficheiro_Sair_OnClick(object sender, RoutedEventArgs e)
         {
             this.Close();
         }
+
+        
     }
 }

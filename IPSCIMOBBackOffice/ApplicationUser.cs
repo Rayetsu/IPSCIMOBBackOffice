@@ -17,8 +17,8 @@ namespace IPSCIMOBBackOffice
                 PropertyChanged(this, e);
         }
 
-        int id;
-        public int Id
+        string id;
+        public string Id
         {
             get { return id; }
             set
@@ -73,16 +73,16 @@ namespace IPSCIMOBBackOffice
             }
         }
 
-        int candidaturaAtual;
-        public int CandidaturaAtual
-        {
-            get { return candidaturaAtual; }
-            set
-            {
-                candidaturaAtual = value;
-                OnPropertyChanged(new PropertyChangedEventArgs("CandidaturaAtual"));
-            }
-        }
+        //int candidaturaAtual;
+        //public int CandidaturaAtual
+        //{
+        //    get { return candidaturaAtual; }
+        //    set
+        //    {
+        //        candidaturaAtual = value;
+        //        OnPropertyChanged(new PropertyChangedEventArgs("CandidaturaAtual"));
+        //    }
+        //}
 
         int numeroDoBI;
         public int NumeroDoBI
@@ -221,29 +221,7 @@ namespace IPSCIMOBBackOffice
             }
         }
 
-        int accessFailedCount;
-        public int AccessFailedCount
-        {
-            get { return accessFailedCount; }
-            set
-            {
-                accessFailedCount = value;
-                OnPropertyChanged(new PropertyChangedEventArgs("AccessFailedCount"));
-
-            }
-        }
-
-        string concurrencyStamp;
-        public string ConcurrencyStamp
-        {
-            get { return concurrencyStamp; }
-            set
-            {
-                concurrencyStamp = value;
-                OnPropertyChanged(new PropertyChangedEventArgs("ConcurrencyStamp"));
-            }
-        }
-
+        
         bool emailConfirmed;
         public bool EmailConfirmed
         {
@@ -256,109 +234,6 @@ namespace IPSCIMOBBackOffice
             }
         }
 
-        bool lockoutEnabled;
-        public bool LockoutEnabled
-        {
-            get { return lockoutEnabled; }
-            set
-            {
-                lockoutEnabled = value;
-                OnPropertyChanged(new PropertyChangedEventArgs("LockoutEnabled"));
-
-            }
-        }
-
-        DateTimeOffset lockoutEnd;
-        public DateTimeOffset LockoutEnd
-        {
-            get { return lockoutEnd; }
-            set
-            {
-                lockoutEnd = value;
-                OnPropertyChanged(new PropertyChangedEventArgs("LockoutEnd"));
-
-            }
-        }
-
-        string normalizedEmail;
-        public string NormalizedEmail
-        {
-            get { return normalizedEmail; }
-            set
-            {
-                normalizedEmail = value;
-                OnPropertyChanged(new PropertyChangedEventArgs("NormalizedEmail"));
-            }
-        }
-
-        string normalizedUserName;
-        public string NormalizedUserName
-        {
-            get { return normalizedUserName; }
-            set
-            {
-                normalizedUserName = value;
-                OnPropertyChanged(new PropertyChangedEventArgs("NormalizedUserName"));
-            }
-        }
-
-        string passwordHash;
-        public string PasswordHash
-        {
-            get { return passwordHash; }
-            set
-            {
-                passwordHash = value;
-                OnPropertyChanged(new PropertyChangedEventArgs("PasswordHash"));
-            }
-        }
-
-
-        string phoneNumber;
-        public string PhoneNumber
-        {
-            get { return phoneNumber; }
-            set
-            {
-                phoneNumber = value;
-                OnPropertyChanged(new PropertyChangedEventArgs("PhoneNumber"));
-            }
-        }
-
-        bool phoneNumberConfirmed;
-        public bool PhoneNumberConfirmed
-        {
-            get { return phoneNumberConfirmed; }
-            set
-            {
-                phoneNumberConfirmed = value;
-                OnPropertyChanged(new PropertyChangedEventArgs("PhoneNumberConfirmed"));
-
-            }
-        }
-
-        string securityStamp;
-        public string SecurityStamp
-        {
-            get { return securityStamp; }
-            set
-            {
-                securityStamp = value;
-                OnPropertyChanged(new PropertyChangedEventArgs("SecurityStamp"));
-            }
-        }
-
-        bool twoFactorEnabled;
-        public bool TwoFactorEnabled
-        {
-            get { return twoFactorEnabled; }
-            set
-            {
-                twoFactorEnabled = value;
-                OnPropertyChanged(new PropertyChangedEventArgs("TwoFactorEnabled"));
-
-            }
-        }
 
         string userName;
         public string UserName
@@ -375,39 +250,39 @@ namespace IPSCIMOBBackOffice
         {
         }
 
-        public ApplicationUser(ApplicationUser utilizador)
-        {
-            Id = utilizador.Id;
-            Nome = utilizador.Nome;
-            Nacionalidade = utilizador.Nacionalidade;
-            Email = utilizador.Email;
-            DataDeNascimento = utilizador.DataDeNascimento;
-            CandidaturaAtual = utilizador.CandidaturaAtual;
-            Morada = utilizador.Morada;
-            NumeroDaPorta = utilizador.NumeroDaPorta;
-            Andar = utilizador.Andar;
-            Cidade = utilizador.Cidade;
-            Distrito = utilizador.Distrito;
-            CodigoPostal = utilizador.CodigoPostal;
-            NumeroDoBI = utilizador.NumeroDoBI;
-            NumeroInterno = NumeroInterno;
-            Telefone = utilizador.Telefone;
-            PartilhaMobilidade = utilizador.PartilhaMobilidade;
-            IsFuncionario = utilizador.IsFuncionario;
-            IsDadosVerificados = utilizador.IsDadosVerificados;
-            AccessFailedCount = utilizador.AccessFailedCount;
-            ConcurrencyStamp = utilizador.ConcurrencyStamp;
-            EmailConfirmed = utilizador.EmailConfirmed;
-            LockoutEnabled = utilizador.LockoutEnabled;
-            LockoutEnd = utilizador.LockoutEnd;
-            NormalizedEmail = utilizador.NormalizedEmail;
-            NormalizedUserName = utilizador.NormalizedUserName;
-            PasswordHash = utilizador.PasswordHash;
-            PhoneNumber = utilizador.PhoneNumber;
-            PhoneNumberConfirmed = utilizador.PhoneNumberConfirmed;
-            SecurityStamp = utilizador.SecurityStamp;
-            TwoFactorEnabled = utilizador.TwoFactorEnabled;
-            UserName = utilizador.UserName;
-        }
+        //public ApplicationUser(ApplicationUser utilizador)
+        //{
+        //    Id = utilizador.Id;
+        //    Nome = utilizador.Nome;
+        //    Nacionalidade = utilizador.Nacionalidade;
+        //    Email = utilizador.Email;
+        //    DataDeNascimento = utilizador.DataDeNascimento;
+        //    //CandidaturaAtual = utilizador.CandidaturaAtual;
+        //    Morada = utilizador.Morada;
+        //    NumeroDaPorta = utilizador.NumeroDaPorta;
+        //    Andar = utilizador.Andar;
+        //    Cidade = utilizador.Cidade;
+        //    Distrito = utilizador.Distrito;
+        //    CodigoPostal = utilizador.CodigoPostal;
+        //    NumeroDoBI = utilizador.NumeroDoBI;
+        //    NumeroInterno = NumeroInterno;
+        //    Telefone = utilizador.Telefone;
+        //    PartilhaMobilidade = utilizador.PartilhaMobilidade;
+        //    IsFuncionario = utilizador.IsFuncionario;
+        //    IsDadosVerificados = utilizador.IsDadosVerificados;
+        //    //AccessFailedCount = utilizador.AccessFailedCount;
+        //    //ConcurrencyStamp = utilizador.ConcurrencyStamp;
+        //    //EmailConfirmed = utilizador.EmailConfirmed;
+        //    //LockoutEnabled = utilizador.LockoutEnabled;
+        //    //LockoutEnd = utilizador.LockoutEnd;
+        //    //NormalizedEmail = utilizador.NormalizedEmail;
+        //    //NormalizedUserName = utilizador.NormalizedUserName;
+        //    //PasswordHash = utilizador.PasswordHash;
+        //    //PhoneNumber = utilizador.PhoneNumber;
+        //    //PhoneNumberConfirmed = utilizador.PhoneNumberConfirmed;
+        //    //SecurityStamp = utilizador.SecurityStamp;
+        //    //TwoFactorEnabled = utilizador.TwoFactorEnabled;
+        //    UserName = utilizador.UserName;
+        //}
     }
 }

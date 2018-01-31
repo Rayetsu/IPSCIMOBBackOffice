@@ -204,7 +204,7 @@ namespace IPSCIMOBBackOffice
             cmd.Parameters.AddWithValue("@partilhaMobilidade", foreignStudent.PartilhaMobilidade.ToString());
             cmd.Parameters.AddWithValue("@isFuncionario", foreignStudent.IsFuncionario.ToString());
             cmd.Parameters.AddWithValue("@isDadosVerificados", foreignStudent.IsDadosVerificados.ToString());
-            cmd.Parameters.AddWithValue("@id", foreignStudent.Id.ToString());
+            cmd.Parameters.AddWithValue("@id", foreignStudent.Id);
 
             int regs = 0;
 
@@ -252,12 +252,12 @@ namespace IPSCIMOBBackOffice
                 {
                     ApplicationUser c = new ApplicationUser();
 
-                    c.Id = (int)dr["Id"];
+                    c.Id = (string)dr["Id"];
                     c.Nome = (string)dr["Nome"];
                     c.Nacionalidade = (string)dr["Nacionalidade"];
                     c.Email = (string)dr["Email"];
                     c.DataDeNascimento = (DateTime)dr["DataDeNascimento"];
-                    c.CandidaturaAtual = (int)dr["CandidaturaAtual"];
+                    //c.CandidaturaAtual = (int)dr["CandidaturaAtual"];
                     c.Morada = (string)dr["Morada"];
                     c.NumeroDaPorta = (int)dr["NumeroDaPorta"];
                     c.Andar = (string)dr["Andar"];
@@ -270,18 +270,7 @@ namespace IPSCIMOBBackOffice
                     c.PartilhaMobilidade = (bool)dr["PartilhaMobilidade"];
                     c.IsFuncionario = (bool)dr["IsFuncionario"];
                     c.IsDadosVerificados = (bool)dr["IsDadosVerificados"];
-                    c.NormalizedEmail = (string)dr["NormalizedEmail"];
-                    c.NormalizedUserName = (string)dr["NormalizedUserName"];
-                    c.AccessFailedCount = (int)dr["AccessFailedCount"];
-                    c.ConcurrencyStamp = (string)dr["ConcurrencyStamp"];
-                    c.EmailConfirmed = (bool)dr["EmailConfirmed"];
-                    c.LockoutEnabled = (bool)dr["LockoutEnabled"];
-                    c.LockoutEnd = (DateTimeOffset)dr["LockoutEnd"];
-                    c.PasswordHash = (string)dr["PasswordHash"];
-                    c.PhoneNumber = (string)dr["PhoneNumber"];
-                    c.PhoneNumberConfirmed = (bool)dr["PhoneNumberConfirmed"];
-                    c.SecurityStamp = (string)dr["SecurityStamp"];
-                    c.TwoFactorEnabled = (bool)dr["TwoFactorEnabled"];
+                    c.EmailConfirmed = (bool)dr["EmailConfirmed"];        
                     c.UserName = (string)dr["UserName"];
 
                     users.Add(c);
@@ -298,6 +287,182 @@ namespace IPSCIMOBBackOffice
             }
 
             return users;
+        }
+
+        public ObservableCollection<Sugestao> GetSugestoes()
+        {
+            ObservableCollection<Sugestao> sugestoes = new ObservableCollection<Sugestao>();
+
+            SqlConnection con = new SqlConnection(connectionString);
+            SqlCommand cmd = new SqlCommand();
+
+            cmd.Connection = con;
+
+            string sql = "SELECT * FROM Sugestao";
+
+            cmd.CommandText = sql;
+
+            try
+            {
+                con.Open();
+
+                SqlDataReader dr;
+
+                dr = cmd.ExecuteReader();
+
+                while (dr.Read())
+                {
+                    Sugestao c = new Sugestao();
+
+                    c.SugestaoID = (int)dr["SugestaoID"];
+                    c.EmailUtilizador = (string)dr["EmailUtilizador"];
+                    c.TextoSugestao = (string)dr["TextoSugestao"];
+
+                    sugestoes.Add(c);
+                }
+
+            }
+            catch (Exception exc)
+            {
+                MessageBox.Show(exc.Message);
+            }
+            finally
+            {
+                con.Close();
+            }
+
+            return sugestoes;
+        }
+
+
+        public int InserirSugestao(Sugestao sugestao)
+        {
+            int newId = -1;
+
+            SqlConnection con = new SqlConnection(connectionString);
+            SqlCommand cmd = new SqlCommand();
+
+            cmd.Connection = con;
+
+            string sqlInsert = "INSERT INTO [Sugestao] ([EmailUtilizador], [TextoSugestao]) VALUES ('" + sugestao.EmailUtilizador + "', '" + sugestao.TextoSugestao + "')";
+            cmd.CommandText = sqlInsert;
+
+            string sqlSelect = "SELECT SugestaoID, EmailUtilizador, TextoSugestao FROM Sugestao WHERE (SugestaoID = SCOPE_IDENTITY())";
+
+            int regs = 0;
+
+            try
+            {
+                con.Open();
+
+                regs = cmd.ExecuteNonQuery();
+
+                SqlDataReader dr;
+                cmd.CommandText = sqlSelect;
+                dr = cmd.ExecuteReader();
+
+                if (dr.Read())
+                    newId = (int)dr["SugestaoID"];
+            }
+            catch (Exception exc)
+            {
+                MessageBox.Show(exc.Message);
+            }
+            finally
+            {
+                con.Close();
+            }
+
+            MessageBox.Show(regs + " registo adicionado (" + newId + ")");
+
+            return newId;
+        }
+
+        public void RemoverSugestao(int id)
+        {
+            SqlConnection con = new SqlConnection(connectionString);
+            SqlCommand cmd = new SqlCommand();
+
+            cmd.Connection = con;
+
+            string sql = "DELETE FROM [Sugestao] WHERE ([SugestaoID] = " + id.ToString() + ")";
+            cmd.CommandText = sql;
+
+            int regs = 0;
+
+            try
+            {
+                con.Open();
+
+                regs = cmd.ExecuteNonQuery();
+            }
+            catch (Exception exc)
+            {
+                MessageBox.Show(exc.Message);
+            }
+            finally
+            {
+                con.Close();
+            }
+
+            MessageBox.Show(regs + " registo apagado");
+        }
+
+        public void ActualizarSugestao(Sugestao sugestao)
+        {
+            SqlConnection con = new SqlConnection(connectionString);
+            SqlCommand cmd = new SqlCommand();
+
+            cmd.Connection = con;
+
+            string sql = "UPDATE [Sugestao] SET [EmailUtilizador] = @emailUtilizador, " +
+                "[TextoSugestao] = @textoSugestao WHERE ([SugestaoID] = @id)";
+
+            //string sql = "UPDATE [ForeignStudents] SET [Nome] = '" +
+            //    foreignStudent.Nome + "', [Nacionalidade] = '" +
+            //    foreignStudent.Nacionalidade + "', [Email] = '" +
+            //    foreignStudent.Email + "', [DataDeNascimento] = '" +
+            //    foreignStudent.DataDeNascimento.ToString() + "', [EscolaIPSECurso] = '" +
+            //    foreignStudent.EscolaIPSECurso + "', [Morada] = '" +
+            //    foreignStudent.Morada + "', [NumeroDaPorta] = " +
+            //    foreignStudent.NumeroDaPorta.ToString() + ", [Andar] = '" +
+            //    foreignStudent.Andar + "', [Cidade] = '" +
+            //    foreignStudent.Cidade + "', [Distrito] = '" +
+            //    foreignStudent.Distrito + "', [CodigoPostal] = '" +
+            //    foreignStudent.CodigoPostal + "', [Universidade] = '" +
+            //    foreignStudent.Universidade + "', [Telefone] = " +
+            //    foreignStudent.Telefone.ToString() + ", [IsBolseiro] = '" +
+            //    foreignStudent.IsBolseiro.ToString() + "', [PartilhaMobilidade] = '" +
+            //    foreignStudent.PartilhaMobilidade.ToString() + "', [IsFuncionario] = '" +
+            //    foreignStudent.IsFuncionario.ToString() + "', [IsDadosVerificados] = '" +
+            //    foreignStudent.IsDadosVerificados.ToString() +
+            //    "' WHERE ([Id] = " +
+            //    foreignStudent.Id.ToString() + ")";
+
+            cmd.CommandText = sql;
+
+            cmd.Parameters.AddWithValue("@emailUtilizador", sugestao.EmailUtilizador);
+            cmd.Parameters.AddWithValue("@textoSugestao", sugestao.TextoSugestao);
+            cmd.Parameters.AddWithValue("@id", sugestao.SugestaoID.ToString());
+
+            int regs = 0;
+
+            try
+            {
+                con.Open();
+
+                regs = cmd.ExecuteNonQuery();
+            }
+            catch (Exception exc)
+            {
+                MessageBox.Show(exc.Message);
+            }
+            finally
+            {
+                con.Close();
+            }
+
+            MessageBox.Show(regs + " registo actualizado");
         }
     }
 }
