@@ -62,17 +62,29 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="ApplicationUser.cs" />
+    <Compile Include="EditInformacoes.xaml.cs">
+      <DependentUpon>EditInformacoes.xaml</DependentUpon>
+    </Compile>
     <Compile Include="EditSugestao.xaml.cs">
       <DependentUpon>EditSugestao.xaml</DependentUpon>
     </Compile>
     <Compile Include="EditUtilizador.xaml.cs">
       <DependentUpon>EditUtilizador.xaml</DependentUpon>
     </Compile>
+    <Compile Include="GestorInformacoes.xaml.cs">
+      <DependentUpon>GestorInformacoes.xaml</DependentUpon>
+    </Compile>
     <Compile Include="GestorSugestoes.xaml.cs">
       <DependentUpon>GestorSugestoes.xaml</DependentUpon>
     </Compile>
+    <Compile Include="InformacaoGeral.cs" />
+    <Compile Include="InstituicaoParceira.cs" />
     <Compile Include="Sugestao.cs" />
     <Page Include="EditAlunoEstrangeiro.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="EditInformacoes.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -85,6 +97,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="GestorAlunosEstrangeiros.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GestorInformacoes.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

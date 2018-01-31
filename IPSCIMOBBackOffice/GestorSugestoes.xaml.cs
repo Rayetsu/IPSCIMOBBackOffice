@@ -104,8 +104,8 @@ namespace IPSCIMOBBackOffice
 
         private void ListBoxSugestoes_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            ApplicationUser userAtual = listBoxSugestoes.SelectedItem as ApplicationUser;
-            if (userAtual == null)
+            Sugestao sugestaoAtual = listBoxSugestoes.SelectedItem as Sugestao;
+            if (sugestaoAtual == null)
                 return;
         }
     }

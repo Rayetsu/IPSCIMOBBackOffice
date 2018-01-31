@@ -56,11 +56,11 @@ namespace IPSCIMOBBackOffice
         {
         }
 
-        public Sugestao(Sugestao sugestao)
-        {
-            SugestaoID = sugestao.SugestaoID;
-            EmailUtilizador = sugestao.EmailUtilizador;
-            TextoSugestao = sugestao.TextoSugestao; 
-        }
+        //public Sugestao(Sugestao sugestao)
+        //{
+        //    SugestaoID = sugestao.SugestaoID;
+        //    EmailUtilizador = sugestao.EmailUtilizador;
+        //    TextoSugestao = sugestao.TextoSugestao; 
+        //}
     }
 }

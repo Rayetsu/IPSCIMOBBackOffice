@@ -226,7 +226,6 @@ namespace IPSCIMOBBackOffice
             MessageBox.Show(regs + " registo actualizado");
         }
 
-
         public ObservableCollection<ApplicationUser> GetUsers()
         {
             ObservableCollection<ApplicationUser> users = new ObservableCollection<ApplicationUser>();
@@ -507,26 +506,6 @@ namespace IPSCIMOBBackOffice
             string sql = "UPDATE [Sugestao] SET [EmailUtilizador] = @emailUtilizador, " +
                 "[TextoSugestao] = @textoSugestao WHERE ([SugestaoID] = @id)";
 
-            //string sql = "UPDATE [ForeignStudents] SET [Nome] = '" +
-            //    foreignStudent.Nome + "', [Nacionalidade] = '" +
-            //    foreignStudent.Nacionalidade + "', [Email] = '" +
-            //    foreignStudent.Email + "', [DataDeNascimento] = '" +
-            //    foreignStudent.DataDeNascimento.ToString() + "', [EscolaIPSECurso] = '" +
-            //    foreignStudent.EscolaIPSECurso + "', [Morada] = '" +
-            //    foreignStudent.Morada + "', [NumeroDaPorta] = " +
-            //    foreignStudent.NumeroDaPorta.ToString() + ", [Andar] = '" +
-            //    foreignStudent.Andar + "', [Cidade] = '" +
-            //    foreignStudent.Cidade + "', [Distrito] = '" +
-            //    foreignStudent.Distrito + "', [CodigoPostal] = '" +
-            //    foreignStudent.CodigoPostal + "', [Universidade] = '" +
-            //    foreignStudent.Universidade + "', [Telefone] = " +
-            //    foreignStudent.Telefone.ToString() + ", [IsBolseiro] = '" +
-            //    foreignStudent.IsBolseiro.ToString() + "', [PartilhaMobilidade] = '" +
-            //    foreignStudent.PartilhaMobilidade.ToString() + "', [IsFuncionario] = '" +
-            //    foreignStudent.IsFuncionario.ToString() + "', [IsDadosVerificados] = '" +
-            //    foreignStudent.IsDadosVerificados.ToString() +
-            //    "' WHERE ([Id] = " +
-            //    foreignStudent.Id.ToString() + ")";
 
             cmd.CommandText = sql;
 
@@ -554,6 +533,162 @@ namespace IPSCIMOBBackOffice
             MessageBox.Show(regs + " registo actualizado");
         }
 
-        
+        public ObservableCollection<InformacaoGeral> GetInformacoes()
+        {
+            ObservableCollection<InformacaoGeral> info = new ObservableCollection<InformacaoGeral>();
+
+            SqlConnection con = new SqlConnection(connectionString);
+            SqlCommand cmd = new SqlCommand();
+
+            cmd.Connection = con;
+
+            string sql = "SELECT * FROM InformacaoGeral";
+
+            cmd.CommandText = sql;
+
+            try
+            {
+                con.Open();
+
+                SqlDataReader dr;
+
+                dr = cmd.ExecuteReader();
+
+                while (dr.Read())
+                {
+                    InformacaoGeral c = new InformacaoGeral();
+
+                    c.InformacaoGeralID = (int)dr["InformacaoGeralID"];
+                    c.Titulo = (string)dr["Titulo"];
+                    c.Descricao = (string)dr["Descricao"];
+                    c.ProgramaAtual = (bool)dr["ProgramaAtual"];
+
+                    info.Add(c);
+                }
+
+            }
+            catch (Exception exc)
+            {
+                MessageBox.Show(exc.Message);
+            }
+            finally
+            {
+                con.Close();
+            }
+
+            return info;
+        }
+
+
+        public int InserirInformacao(InformacaoGeral info)
+        {
+            int newId = -1;
+
+            SqlConnection con = new SqlConnection(connectionString);
+            SqlCommand cmd = new SqlCommand();
+
+            cmd.Connection = con;
+
+            string sqlInsert = "INSERT INTO [InformacaoGeral] ([Titulo], [Descricao], [ProgramaAtual]) VALUES ('" + info.Titulo + "', '" + info.Descricao + "', '" + info.ProgramaAtual +  "')";
+            cmd.CommandText = sqlInsert;
+
+            string sqlSelect = "SELECT InformacaoGeralID, Titulo, Descricao FROM InformacaoGeral WHERE (InformacaoGeralID = SCOPE_IDENTITY())";
+
+            int regs = 0;
+
+            try
+            {
+                con.Open();
+
+                regs = cmd.ExecuteNonQuery();
+
+                SqlDataReader dr;
+                cmd.CommandText = sqlSelect;
+                dr = cmd.ExecuteReader();
+
+                if (dr.Read())
+                    newId = (int)dr["InformacaoGeralID"];
+            }
+            catch (Exception exc)
+            {
+                MessageBox.Show(exc.Message);
+            }
+            finally
+            {
+                con.Close();
+            }
+
+            MessageBox.Show(regs + " registo adicionado (" + newId + ")");
+
+            return newId;
+        }
+
+        public void RemoverInformacao(int id)
+        {
+            SqlConnection con = new SqlConnection(connectionString);
+            SqlCommand cmd = new SqlCommand();
+
+            cmd.Connection = con;
+
+            string sql = "DELETE FROM [InformacaoGeral] WHERE ([InformacaoGeralID] = " + id.ToString() + ")";
+            cmd.CommandText = sql;
+
+            int regs = 0;
+
+            try
+            {
+                con.Open();
+
+                regs = cmd.ExecuteNonQuery();
+            }
+            catch (Exception exc)
+            {
+                MessageBox.Show(exc.Message);
+            }
+            finally
+            {
+                con.Close();
+            }
+
+            MessageBox.Show(regs + " registo apagado");
+        }
+
+        public void ActualizarInformacao(InformacaoGeral info)
+        {
+            SqlConnection con = new SqlConnection(connectionString);
+            SqlCommand cmd = new SqlCommand();
+
+            cmd.Connection = con;
+
+            string sql = "UPDATE [InformacaoGeral] SET [Titulo] = @titulo, " +
+                "[Descricao] = @descricao WHERE ([InformacaoGeralID] = @id)";
+
+
+            cmd.CommandText = sql;
+
+            cmd.Parameters.AddWithValue("@titulo", info.Titulo);
+            cmd.Parameters.AddWithValue("@descricao", info.Descricao);
+            cmd.Parameters.AddWithValue("@id", info.InformacaoGeralID);
+
+            int regs = 0;
+
+            try
+            {
+                con.Open();
+
+                regs = cmd.ExecuteNonQuery();
+            }
+            catch (Exception exc)
+            {
+                MessageBox.Show(exc.Message);
+            }
+            finally
+            {
+                con.Close();
+            }
+
+            MessageBox.Show(regs + " registo actualizado");
+        }
+
     }
 }
