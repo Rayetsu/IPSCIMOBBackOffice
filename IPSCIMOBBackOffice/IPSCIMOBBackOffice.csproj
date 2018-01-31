@@ -68,6 +68,7 @@
     <Compile Include="GestorSugestoes.xaml.cs">
       <DependentUpon>GestorSugestoes.xaml</DependentUpon>
     </Compile>
+    <Compile Include="IPSCIMOBDBContext.cs" />
     <Compile Include="Sugestao.cs" />
     <Page Include="AddAlunoEstrangeiro.xaml">
       <SubType>Designer</SubType>

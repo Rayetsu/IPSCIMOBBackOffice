@@ -20,19 +20,20 @@ namespace IPSCIMOBBackOffice
     public partial class EditSugestao : Window
     {
         public Sugestao Sugestao { get; set; }
-        public EditSugestao(Sugestao sugestao = null)
+        private IEnumerable<Sugestao> listaSugestoes;
+        private bool mayClose;
+        public EditSugestao(IEnumerable<Sugestao> sugestoes, Sugestao sugestao = null)
         {
             InitializeComponent();
 
-            Sugestao = sugestao == null ? new Sugestao() : sugestao;
 
-            //if (sugestao != null)
-            //{
-            //    Sugestao.EmailUtilizador = sugestao.EmailUtilizador;
-            //    Sugestao.TextoSugestao = sugestao.TextoSugestao; 
-            //}
+            listaSugestoes = sugestoes;
+            Sugestao = sugestao ?? new Sugestao();
 
-            FormSugestaoEdit.DataContext = Sugestao;
+            this.DataContext = Sugestao;
+
+            //Sugestao = sugestao == null ? new Sugestao() : sugestao;
+            //FormSugestaoEdit.DataContext = Sugestao;
         }
 
         private void Edit_OnClick(object sender, RoutedEventArgs e)
@@ -45,7 +46,17 @@ namespace IPSCIMOBBackOffice
             this.DialogResult = false;
         }
 
-
+        //private bool AtualizarEmpresa()
+        //{
+            
+        //    if (listaSugestoes.Any(sugestao => sugestao.EmailUtilizador == Sugestao.EmailUtilizador && sugestao.SugestaoID != Sugestao.SugestaoID))
+        //    {
+        //        MessageBox.Show("Sigla Inválida. Já existente para outra empresa.", "Sigla Inválida", MessageBoxButton.OK, MessageBoxImage.Error);
+        //        return false;
+        //    }
+            
+        //    return true;
+        //}
 
     }
 }
