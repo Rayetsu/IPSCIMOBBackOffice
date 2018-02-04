@@ -60,6 +60,15 @@ namespace IPSCIMOBBackOffice
             gI.ShowDialog();
         }
 
+
+        private void GestorEntrevistas_OnClick(object sender, RoutedEventArgs e)
+        {
+            GestorEntrevistas gE = new GestorEntrevistas();
+            gE.Title = "Gestor de Entrevistas";
+            gE.ShowDialog();
+        }
+
+
         private void Ficheiro_Sair_OnClick(object sender, RoutedEventArgs e)
         {
             this.Close();

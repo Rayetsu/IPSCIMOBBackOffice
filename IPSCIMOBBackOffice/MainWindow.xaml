@@ -20,6 +20,7 @@
                         <MenuItem Header="_Gerir Sugestões" Click="GestorSugestoes_OnClick"/>
                         <MenuItem Header="_Gerir Informações Gerais" Click="GestorInfo_OnClick"/>
                         <MenuItem Header="_Gerir Instituições Parceiras" Click="GestorIntituicao_OnClick"/>
+                        <MenuItem Header="_Gerir Entrevistas" Click="GestorEntrevistas_OnClick"/>
                     </MenuItem>
                 </Menu>
             </Menu>

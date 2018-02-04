@@ -852,6 +852,173 @@ namespace IPSCIMOBBackOffice
             MessageBox.Show(regs + " registo actualizado");
         }
 
+        public ObservableCollection<Entrevista> GetEntrevistas()
+        {
+            ObservableCollection<Entrevista> info = new ObservableCollection<Entrevista>();
+
+            SqlConnection con = new SqlConnection(connectionString);
+            SqlCommand cmd = new SqlCommand();
+
+            cmd.Connection = con;
+
+            string sql = "SELECT * FROM Entrevista";
+
+            cmd.CommandText = sql;
+
+            try
+            {
+                con.Open();
+
+                SqlDataReader dr;
+
+                dr = cmd.ExecuteReader();
+
+                while (dr.Read())
+                {
+                    Entrevista c = new Entrevista();
+
+                    c.EntrevistaId = (int)dr["EntrevistaId"];
+                    c.NumeroAluno = (int)dr["NumeroAluno"];
+                    c.Email = (string)dr["Email"];
+                    c.EntrevistaAtual = (bool)dr["EntrevistaAtual"];
+                    c.DataDeEntrevista = (DateTime)dr["DataDeEntrevista"];
+                    c.Estado = (int)dr["Estado"];
+                    c.NomePrograma = (string)dr["NomePrograma"];
+
+                    info.Add(c);
+                }
+
+            }
+            catch (Exception exc)
+            {
+                MessageBox.Show(exc.Message);
+            }
+            finally
+            {
+                con.Close();
+            }
+
+            return info;
+        }
+
+
+        public int InserirEntrevista(Entrevista entrevista)
+        {
+            int newId = -1;
+
+            SqlConnection con = new SqlConnection(connectionString);
+            SqlCommand cmd = new SqlCommand();
+
+            cmd.Connection = con;
+
+            string sqlInsert = "INSERT INTO [Entrevista] ([NumeroAluno], [Email], [EntrevistaAtual], [DataDeEntrevista], [Estado], [NomePrograma]) VALUES ('" + entrevista.NumeroAluno + "', '" + entrevista.Email + "', '" + entrevista.EntrevistaAtual + "', '" + entrevista.DataDeEntrevista + "', '" + entrevista.Estado + "', '" + entrevista.NomePrograma + "')";
+            cmd.CommandText = sqlInsert;
+
+            string sqlSelect = "SELECT EntrevistaId, NumeroAluno, Email, EntrevistaAtual, DataDeEntrevista, Estado, NomePrograma FROM Entrevista WHERE (EntrevistaId = SCOPE_IDENTITY())";
+
+            int regs = 0;
+
+            try
+            {
+                con.Open();
+
+                regs = cmd.ExecuteNonQuery();
+
+                SqlDataReader dr;
+                cmd.CommandText = sqlSelect;
+                dr = cmd.ExecuteReader();
+
+                if (dr.Read())
+                    newId = (int)dr["EntrevistaId"];
+            }
+            catch (Exception exc)
+            {
+                MessageBox.Show(exc.Message);
+            }
+            finally
+            {
+                con.Close();
+            }
+
+            MessageBox.Show(regs + " registo adicionado (" + newId + ")");
+
+            return newId;
+        }
+
+        public void RemoverEntrevista(int id)
+        {
+            SqlConnection con = new SqlConnection(connectionString);
+            SqlCommand cmd = new SqlCommand();
+
+            cmd.Connection = con;
+
+            string sql = "DELETE FROM [Entrevista] WHERE ([EntrevistaId] = " + id.ToString() + ")";
+            cmd.CommandText = sql;
+
+            int regs = 0;
+
+            try
+            {
+                con.Open();
+
+                regs = cmd.ExecuteNonQuery();
+            }
+            catch (Exception exc)
+            {
+                MessageBox.Show(exc.Message);
+            }
+            finally
+            {
+                con.Close();
+            }
+
+            MessageBox.Show(regs + " registo apagado");
+        }
+
+        public void ActualizarEntrevista(Entrevista entrevista)
+        {
+            SqlConnection con = new SqlConnection(connectionString);
+            SqlCommand cmd = new SqlCommand();
+
+            cmd.Connection = con;
+
+            string sql = "UPDATE [Entrevista] SET [NumeroAluno] = @numeroAluno, " +
+                "[Email] = @email, " +
+                "[EntrevistaAtual] = @entrevistaAtual, " +
+                "[DataDeEntrevista] = @dataDeEntrevista, " +
+                "[Estado] = @estado, " +
+                "[NomePrograma] = @nomePrograma WHERE ([EntrevistaId] = @id)";
+
+
+            cmd.CommandText = sql;
+
+            cmd.Parameters.AddWithValue("@numeroAluno", entrevista.NumeroAluno);
+            cmd.Parameters.AddWithValue("@email", entrevista.Email);
+            cmd.Parameters.AddWithValue("@entrevistaAtual", entrevista.EntrevistaAtual);
+            cmd.Parameters.AddWithValue("@dataDeEntrevista", entrevista.DataDeEntrevista);
+            cmd.Parameters.AddWithValue("@estado", entrevista.Estado);
+            cmd.Parameters.AddWithValue("@nomePrograma", entrevista.NomePrograma);
+            cmd.Parameters.AddWithValue("@id", entrevista.EntrevistaId);
+
+            int regs = 0;
+
+            try
+            {
+                con.Open();
+
+                regs = cmd.ExecuteNonQuery();
+            }
+            catch (Exception exc)
+            {
+                MessageBox.Show(exc.Message);
+            }
+            finally
+            {
+                con.Close();
+            }
+
+            MessageBox.Show(regs + " registo actualizado");
+        }
     }
 }
     
