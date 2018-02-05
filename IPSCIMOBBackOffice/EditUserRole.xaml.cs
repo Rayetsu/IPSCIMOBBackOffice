@@ -15,19 +15,19 @@ using System.Windows.Shapes;
 namespace IPSCIMOBBackOffice
 {
     /// <summary>
-    /// Interaction logic for EditSugestao.xaml
+    /// Interaction logic for EditUserRole.xaml
     /// </summary>
-    public partial class EditSugestao : Window
+    public partial class EditUserRole : Window
     {
-        public Sugestao Sugestao { get; set; }
-        public EditSugestao(Sugestao sugestao = null)
+        public UserRoles UserRole { get; set; }
+        public EditUserRole(UserRoles userRole = null)
         {
             InitializeComponent();
 
-            Sugestao = sugestao == null ? new Sugestao() : sugestao;
+            UserRole = userRole == null ? new UserRoles() : userRole;
 
-          
-            FormSugestaoEdit.DataContext = Sugestao;
+           
+            FormUserRolesEdit.DataContext = UserRole;
         }
 
         private void Edit_OnClick(object sender, RoutedEventArgs e)

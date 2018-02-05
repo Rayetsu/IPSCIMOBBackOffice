@@ -61,7 +61,15 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Ajuda.cs" />
     <Compile Include="ApplicationUser.cs" />
+    <Compile Include="Candidatura.cs" />
+    <Compile Include="EditAjuda.xaml.cs">
+      <DependentUpon>EditAjuda.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="EditCandidatura.xaml.cs">
+      <DependentUpon>EditCandidatura.xaml</DependentUpon>
+    </Compile>
     <Compile Include="EditEntrevista.xaml.cs">
       <DependentUpon>EditEntrevista.xaml</DependentUpon>
     </Compile>
@@ -74,10 +82,19 @@
     <Compile Include="EditSugestao.xaml.cs">
       <DependentUpon>EditSugestao.xaml</DependentUpon>
     </Compile>
+    <Compile Include="EditUserRole.xaml.cs">
+      <DependentUpon>EditUserRole.xaml</DependentUpon>
+    </Compile>
     <Compile Include="EditUtilizador.xaml.cs">
       <DependentUpon>EditUtilizador.xaml</DependentUpon>
     </Compile>
     <Compile Include="Entrevista.cs" />
+    <Compile Include="GestorAjudas.xaml.cs">
+      <DependentUpon>GestorAjudas.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GestorCandidaturas.xaml.cs">
+      <DependentUpon>GestorCandidaturas.xaml</DependentUpon>
+    </Compile>
     <Compile Include="GestorEntrevistas.xaml.cs">
       <DependentUpon>GestorEntrevistas.xaml</DependentUpon>
     </Compile>
@@ -90,10 +107,23 @@
     <Compile Include="GestorSugestoes.xaml.cs">
       <DependentUpon>GestorSugestoes.xaml</DependentUpon>
     </Compile>
+    <Compile Include="GestorUserRoles.xaml.cs">
+      <DependentUpon>GestorUserRoles.xaml</DependentUpon>
+    </Compile>
     <Compile Include="InformacaoGeral.cs" />
     <Compile Include="InstituicaoParceira.cs" />
+    <Compile Include="Roles.cs" />
     <Compile Include="Sugestao.cs" />
+    <Compile Include="UserRoles.cs" />
+    <Page Include="EditAjuda.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="EditAlunoEstrangeiro.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="EditCandidatura.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -113,11 +143,23 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="EditUserRole.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="EditUtilizador.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="GestorAjudas.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="GestorAlunosEstrangeiros.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GestorCandidaturas.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -134,6 +176,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="GestorSugestoes.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GestorUserRoles.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

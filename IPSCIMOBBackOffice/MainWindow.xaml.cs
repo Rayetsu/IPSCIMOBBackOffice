@@ -68,6 +68,27 @@ namespace IPSCIMOBBackOffice
             gE.ShowDialog();
         }
 
+        private void GestorCandidaturas_OnClick(object sender, RoutedEventArgs e)
+        {
+            GestorCandidaturas gE = new GestorCandidaturas();
+            gE.Title = "Gestor de Candidaturas";
+            gE.ShowDialog();
+        }
+
+        private void GestorUserRoles_OnClick(object sender, RoutedEventArgs e)
+        {
+            GestorUserRoles gE = new GestorUserRoles();
+            gE.Title = "Gestor de User Roles";
+            gE.ShowDialog();
+        }
+
+        private void GestorAjudas_OnClick(object sender, RoutedEventArgs e)
+        {
+            GestorAjudas gE = new GestorAjudas();
+            gE.Title = "Gestor de Ajudas";
+            gE.ShowDialog();
+        }
+
 
         private void Ficheiro_Sair_OnClick(object sender, RoutedEventArgs e)
         {

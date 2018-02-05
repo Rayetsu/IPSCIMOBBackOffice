@@ -1019,7 +1019,433 @@ namespace IPSCIMOBBackOffice
 
             MessageBox.Show(regs + " registo actualizado");
         }
+
+        public ObservableCollection<Candidatura> GetCandidatura()
+        {
+            ObservableCollection<Candidatura> info = new ObservableCollection<Candidatura>();
+
+            SqlConnection con = new SqlConnection(connectionString);
+            SqlCommand cmd = new SqlCommand();
+
+            cmd.Connection = con;
+
+            string sql = "SELECT * FROM CandidaturaModel";
+
+            cmd.CommandText = sql;
+
+            try
+            {
+                con.Open();
+
+                SqlDataReader dr;
+
+                dr = cmd.ExecuteReader();
+
+                while (dr.Read())
+                {
+                    Candidatura c = new Candidatura();
+
+                    c.CandidaturaID = (int)dr["CandidaturaID"];
+                    c.Programa = (string)dr["Programa"];
+                    c.InstituicaoNome = (string)dr["InstituicaoNome"];
+                    c.InstituicaoPais = (string)dr["InstituicaoPais"];
+                    c.InstituicaoCidade = (string)dr["InstituicaoCidade"];
+                    c.DataInicioCandidatura = (DateTime)dr["DataInicioCandidatura"];
+                    c.DataFimCandidatura = (DateTime)dr["DataFimCandidatura"];
+                    c.Semestre = (int)dr["Semestre"];
+                    c.Email = (string)dr["Email"]; 
+                    c.EntrevistaId = (int)dr["EntrevistaID"]; 
+                    c.Nome = (string)dr["Nome"];
+                    c.NumeroInterno = (int)dr["NumeroInterno"];
+                    c.IsBolsa = (bool)dr["IsBolsa"];
+                    c.EstadoBolsa = (int)dr["EstadoBolsa"];
+                    c.IsEstudo = (bool)dr["IsEstudo"];
+                    c.IsEstagio = (bool)dr["IsEstagio"];
+                    c.IsInvestigacao = (bool)dr["IsInvestigacao"];
+                    c.IsLecionar = (bool)dr["IsLecionar"];
+                    c.IsFormacao = (bool)dr["IsFormacao"];
+                    c.IsConfirmado = (bool)dr["IsConfirmado"];
+                    c.Estado = (int)dr["Estado"];
+                    c.EstadoDocumentos = (int)dr["EstadoDocumentos"];
+
+                    info.Add(c);
+                }
+
+            }
+            catch (Exception exc)
+            {
+                MessageBox.Show(exc.Message);
+            }
+            finally
+            {
+                con.Close();
+            }
+
+            return info;
+        }
+
+
+        //public int InserirCandidatura(Entrevista entrevista)
+        //{
+        //    int newId = -1;
+
+        //    SqlConnection con = new SqlConnection(connectionString);
+        //    SqlCommand cmd = new SqlCommand();
+
+        //    cmd.Connection = con;
+
+        //    string sqlInsert = "INSERT INTO [Entrevista] ([NumeroAluno], [Email], [EntrevistaAtual], [DataDeEntrevista], [Estado], [NomePrograma]) VALUES ('" + entrevista.NumeroAluno + "', '" + entrevista.Email + "', '" + entrevista.EntrevistaAtual + "', '" + entrevista.DataDeEntrevista + "', '" + entrevista.Estado + "', '" + entrevista.NomePrograma + "')";
+        //    cmd.CommandText = sqlInsert;
+
+        //    string sqlSelect = "SELECT EntrevistaId, NumeroAluno, Email, EntrevistaAtual, DataDeEntrevista, Estado, NomePrograma FROM Entrevista WHERE (EntrevistaId = SCOPE_IDENTITY())";
+
+        //    int regs = 0;
+
+        //    try
+        //    {
+        //        con.Open();
+
+        //        regs = cmd.ExecuteNonQuery();
+
+        //        SqlDataReader dr;
+        //        cmd.CommandText = sqlSelect;
+        //        dr = cmd.ExecuteReader();
+
+        //        if (dr.Read())
+        //            newId = (int)dr["EntrevistaId"];
+        //    }
+        //    catch (Exception exc)
+        //    {
+        //        MessageBox.Show(exc.Message);
+        //    }
+        //    finally
+        //    {
+        //        con.Close();
+        //    }
+
+        //    MessageBox.Show(regs + " registo adicionado (" + newId + ")");
+
+        //    return newId;
+        //}
+
+        public void RemoverCandidatura(int id)
+        {
+            SqlConnection con = new SqlConnection(connectionString);
+            SqlCommand cmd = new SqlCommand();
+
+            cmd.Connection = con;
+
+            string sql = "DELETE FROM [Candidatura] WHERE ([CandidaturaID] = " + id.ToString() + ")";
+            cmd.CommandText = sql;
+
+            int regs = 0;
+
+            try
+            {
+                con.Open();
+
+                regs = cmd.ExecuteNonQuery();
+            }
+            catch (Exception exc)
+            {
+                MessageBox.Show(exc.Message);
+            }
+            finally
+            {
+                con.Close();
+            }
+
+            MessageBox.Show(regs + " registo apagado");
+        }
+
+        public void ActualizarCandidatura(Candidatura candidatura)
+        {
+            SqlConnection con = new SqlConnection(connectionString);
+            SqlCommand cmd = new SqlCommand();
+
+            cmd.Connection = con;
+
+            string sql = "UPDATE [Candidatura] SET [Programa] = @programa, " +
+                "[InstituicaoNome] = @instituicaoNome, " +
+                "[InstituicaoPais] = @instituicaoPais, " +
+                "[InstituicaoCidade] = @instituicaoCidade, " +
+                "[DataInicioCandidatura] = @datainicioCandidatura, " +
+                "[DataFimCandidatura] = @dataFimCandidatura, " +
+                "[Semestre] = @semestre, " +
+                "[Email] = @email, " +
+                "[EntrevistaID] = @entrevistaID, " +
+                "[Nome] = @nome, " +
+                "[NumeroInterno] = @numeroInterno, " +
+                "[IsBolsa] = @isBolsa, " +
+                "[EstadoBolsa] = @estadoBolsa, " +
+                "[IsEstado] = @isEstado, " +
+                "[IsEstagio] = @isEstagio, " +
+                "[IsInvestigacao] = @isInvestigacao, " +
+                "[IsLecionar] = @isLecionar, " +
+                "[IsFormacao] = @isFormacao, " +
+                "[IsConfirmado] = @isConfirmado, " +
+                "[Estado] = @estado, " +
+                "[EstadoDocumentos] = @estadoDocumentos WHERE ([CandidaturaID] = @id)";
+
+
+            cmd.CommandText = sql;
+
+            cmd.Parameters.AddWithValue("@programa", candidatura.Programa);
+            cmd.Parameters.AddWithValue("@instituicaoNome", candidatura.InstituicaoNome);
+            cmd.Parameters.AddWithValue("@instituicaoPais", candidatura.InstituicaoCidade);
+            cmd.Parameters.AddWithValue("@instituicaoCidade", candidatura.InstituicaoCidade);
+            cmd.Parameters.AddWithValue("@dataInicioCandidatura", candidatura.DataInicioCandidatura);
+            cmd.Parameters.AddWithValue("@dataFimCandidatura", candidatura.DataFimCandidatura);
+            cmd.Parameters.AddWithValue("@semestre", candidatura.Semestre);
+            cmd.Parameters.AddWithValue("@email", candidatura.InstituicaoNome);
+            cmd.Parameters.AddWithValue("@entrevistaID", candidatura.InstituicaoCidade);
+            cmd.Parameters.AddWithValue("@nome", candidatura.Nome);
+            cmd.Parameters.AddWithValue("@numeroInterno", candidatura.NumeroInterno);
+            cmd.Parameters.AddWithValue("@isBolsa", candidatura.IsBolsa);
+            cmd.Parameters.AddWithValue("@estadoBolsa", candidatura.EstadoBolsa);
+            cmd.Parameters.AddWithValue("@isEstudo", candidatura.IsEstudo);
+            cmd.Parameters.AddWithValue("@isEstagio", candidatura.IsEstagio);
+            cmd.Parameters.AddWithValue("@isInvestigacao", candidatura.IsInvestigacao);
+            cmd.Parameters.AddWithValue("@isLecionar", candidatura.IsLecionar);
+            cmd.Parameters.AddWithValue("@isFormacao", candidatura.IsFormacao);
+            cmd.Parameters.AddWithValue("@isConfirmado", candidatura.IsConfirmado);
+            cmd.Parameters.AddWithValue("@estado", candidatura.Estado);
+            cmd.Parameters.AddWithValue("@estadoDocumentos", candidatura.EstadoDocumentos);
+            cmd.Parameters.AddWithValue("@id", candidatura.EntrevistaId);
+
+            int regs = 0;
+
+            try
+            {
+                con.Open();
+
+                regs = cmd.ExecuteNonQuery();
+            }
+            catch (Exception exc)
+            {
+                MessageBox.Show(exc.Message);
+            }
+            finally
+            {
+                con.Close();
+            }
+
+            MessageBox.Show(regs + " registo actualizado");
+        }
+
+        public ObservableCollection<UserRoles> GetUserRoles()
+        {
+            ObservableCollection<UserRoles> info = new ObservableCollection<UserRoles>();
+
+            SqlConnection con = new SqlConnection(connectionString);
+            SqlCommand cmd = new SqlCommand();
+
+            cmd.Connection = con;
+
+            string sql = "SELECT * FROM AspNetUserRoles";
+
+            cmd.CommandText = sql;
+
+            try
+            {
+                con.Open();
+
+                SqlDataReader dr;
+
+                dr = cmd.ExecuteReader();
+
+                while (dr.Read())
+                {
+                    UserRoles c = new UserRoles();
+
+                   
+                    c.UserId = (string)dr["UserId"];
+                    c.RoleId = (string)dr["RoleId"];
+                    
+
+                    info.Add(c);
+                }
+
+            }
+            catch (Exception exc)
+            {
+                MessageBox.Show(exc.Message);
+            }
+            finally
+            {
+                con.Close();
+            }
+
+            return info;
+        }
+
+        public void ActualizarUserRoles(UserRoles userRoles)
+        {
+            SqlConnection con = new SqlConnection(connectionString);
+            SqlCommand cmd = new SqlCommand();
+
+            cmd.Connection = con;
+
+            string sql = "UPDATE [AspNetUserRoles] SET [RoleId] = @roleId WHERE ([UserId] = @id)";
+
+
+            cmd.CommandText = sql;
+
+            
+            cmd.Parameters.AddWithValue("@roleId", userRoles.RoleId);
+            cmd.Parameters.AddWithValue("@id", userRoles.UserId);
+
+            int regs = 0;
+
+            try
+            {
+                con.Open();
+
+                regs = cmd.ExecuteNonQuery();
+            }
+            catch (Exception exc)
+            {
+                MessageBox.Show(exc.Message);
+            }
+            finally
+            {
+                con.Close();
+            }
+
+            MessageBox.Show(regs + " registo actualizado");
+        }
+
+        public List<Roles> GetRoles()
+        {
+            List<Roles> info = new List<Roles>();
+
+            SqlConnection con = new SqlConnection(connectionString);
+            SqlCommand cmd = new SqlCommand();
+
+            cmd.Connection = con;
+
+            string sql = "SELECT * FROM AspNetRoles";
+
+            cmd.CommandText = sql;
+
+            try
+            {
+                con.Open();
+
+                SqlDataReader dr;
+
+                dr = cmd.ExecuteReader();
+
+                while (dr.Read())
+                {
+                    Roles c = new Roles();
+
+
+                    c.Id = (string)dr["Id"];
+                    c.Name = (string)dr["Name"];
+
+
+                    info.Add(c);
+                }
+
+            }
+            catch (Exception exc)
+            {
+                MessageBox.Show(exc.Message);
+            }
+            finally
+            {
+                con.Close();
+            }
+
+            return info;
+        }
+
+        public ObservableCollection<Ajuda> GetAjuda()
+        {
+            ObservableCollection<Ajuda> info = new ObservableCollection<Ajuda>();
+
+            SqlConnection con = new SqlConnection(connectionString);
+            SqlCommand cmd = new SqlCommand();
+
+            cmd.Connection = con;
+
+            string sql = "SELECT * FROM Ajuda";
+
+            cmd.CommandText = sql;
+
+            try
+            {
+                con.Open();
+
+                SqlDataReader dr;
+
+                dr = cmd.ExecuteReader();
+
+                while (dr.Read())
+                {
+                    Ajuda c = new Ajuda();
+
+
+                    c.Id = (int)dr["Id"];
+                    c.Nome = (string)dr["Nome"];
+                    c.Descricao = (string)dr["Descricao"];
+
+
+                    info.Add(c);
+                }
+
+            }
+            catch (Exception exc)
+            {
+                MessageBox.Show(exc.Message);
+            }
+            finally
+            {
+                con.Close();
+            }
+
+            return info;
+        }
+
+        public void ActualizarAjuda(Ajuda ajuda)
+        {
+            SqlConnection con = new SqlConnection(connectionString);
+            SqlCommand cmd = new SqlCommand();
+
+            cmd.Connection = con;
+
+            string sql = "UPDATE [Ajuda] SET [Nome] = @nome, [Descricao] = @descricao WHERE ([UserId] = @id)";
+
+
+            cmd.CommandText = sql;
+
+
+            cmd.Parameters.AddWithValue("@nome", ajuda.Nome);
+            cmd.Parameters.AddWithValue("@descricao", ajuda.Descricao);
+            cmd.Parameters.AddWithValue("@id", ajuda.Id);
+
+            int regs = 0;
+
+            try
+            {
+                con.Open();
+
+                regs = cmd.ExecuteNonQuery();
+            }
+            catch (Exception exc)
+            {
+                MessageBox.Show(exc.Message);
+            }
+            finally
+            {
+                con.Close();
+            }
+
+            MessageBox.Show(regs + " registo actualizado");
+        }
     }
 }
+
     
 

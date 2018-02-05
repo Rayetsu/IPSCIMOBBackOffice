@@ -15,19 +15,20 @@ using System.Windows.Shapes;
 namespace IPSCIMOBBackOffice
 {
     /// <summary>
-    /// Interaction logic for EditSugestao.xaml
+    /// Interaction logic for EditCandidatura.xaml
     /// </summary>
-    public partial class EditSugestao : Window
+    public partial class EditCandidatura : Window
     {
-        public Sugestao Sugestao { get; set; }
-        public EditSugestao(Sugestao sugestao = null)
+        public Candidatura Candidatura { get; set; }
+        public EditCandidatura(Candidatura candidatura = null)
         {
             InitializeComponent();
 
-            Sugestao = sugestao == null ? new Sugestao() : sugestao;
+            Candidatura = candidatura == null ? new Candidatura() : candidatura;
 
-          
-            FormSugestaoEdit.DataContext = Sugestao;
+            
+
+            FormCandidaturaEdit.DataContext = Candidatura;
         }
 
         private void Edit_OnClick(object sender, RoutedEventArgs e)
