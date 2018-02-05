@@ -18,7 +18,7 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="90"/>
+            <ColumnDefinition Width="130"/>
             <ColumnDefinition Width="165"/>
             <ColumnDefinition Width="110"/>
             <ColumnDefinition Width="165"/>
@@ -39,24 +39,129 @@
         <Label Content="Distrito" Grid.Row="6" Grid.Column="2" HorizontalAlignment="Left"   FontSize="12" Margin="10,10.8,0,10" Width="120" />
         <Label Name="CodigoPostal" Content="Código Postal" Grid.Row="7" Grid.Column="2" HorizontalAlignment="Left"   FontSize="12" Margin="10,10.8,0,10" Width="120" />
         <Label Content="Telefone" Grid.Row="2" Grid.Column="4" HorizontalAlignment="Left"   FontSize="12" Margin="10,10.8,0,10" Width="120" />
-        
-        <TextBox Name="InsertNome" Text="{Binding Path=Nome}" Grid.Row="2" Grid.Column="1"  HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="Bold" FontSize="14" Margin="10.4,13.4,0,12.6" Width="150" Height="34"/>
-        <TextBox Name="InsertNumeroInterno" Text="{Binding Path=NumeroInterno}" Grid.Row="3" Grid.Column="1"  HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="Bold" FontSize="14" Margin="10.4,11,0,30.2" Width="150" Height="34"/>
-        <TextBox Name="InsertNacionalidade" Text="{Binding Path=Nacionalidade}" Grid.Row="4" Grid.Column="1"  HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="Bold" FontSize="14" Margin="10.4,11,0,30.2" Width="150" Height="34"/>
-        <TextBox Name="InsertEmail" Text="{Binding Path=Email}" Grid.Row="5" Grid.Column="1"  HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="Bold" FontSize="14" Margin="10.4,11,0,30.2" Width="150" Height="34"/>
-        <TextBox Name="InsertDataDeNascimento" Text="{Binding Path=DataDeNascimento}" Grid.Row="6" Grid.Column="1"  HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="Bold" FontSize="14" Margin="10.4,13.4,0,12.6" Width="150" Height="34"/>
-        
-        <TextBox Name="InsertBI" Text="{Binding Path=NumeroDoBI}" Grid.Row="7" Grid.Column="1"  HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="Bold" FontSize="14" Margin="10.4,11,0,30.2" Width="150" Height="34"/>
-        <TextBox Name="InsertMorada" Text="{Binding Path=Morada}" Grid.Row="2" Grid.Column="3"  HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="Bold" FontSize="14" Margin="10.4,13.4,0,12.6" Width="150" Height="34"/>
-        <TextBox Name="InsertNumeroDaPorta" Text="{Binding Path=NumeroDaPorta}" Grid.Row="3" Grid.Column="3"  HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="Bold" FontSize="14" Margin="10.4,11,0,30.2" Width="150" Height="34"/>
-        <TextBox Name="InsertAndar" Text="{Binding Path=Andar}" Grid.Row="4" Grid.Column="3"  HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="Bold" FontSize="14" Margin="10.4,11,0,30.2" Width="150" Height="34"/>
-        <TextBox Name="InsertCidade" Text="{Binding Path=Cidade}" Grid.Row="5" Grid.Column="3"  HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="Bold" FontSize="14" Margin="10.4,13.4,0,12.6" Width="150" Height="34"/>
-        <TextBox Name="InsertDistrito" Text="{Binding Path=Distrito}" Grid.Row="6" Grid.Column="3"  HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="Bold" FontSize="14" Margin="10.4,11,0,30.2" Width="150" Height="34"/>
-        <TextBox Name="InsertCodigoPostal" Text="{Binding Path=CodigoPostal}" Grid.Row="7" Grid.Column="3"  HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="Bold" FontSize="14" Margin="10.4,11,0,30.2" Width="150" Height="34"/>
-        <TextBox Name="InsertTelefone" Text="{Binding Path=Telefone}" Grid.Row="2" Grid.Column="5"  HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="Bold" FontSize="14" Margin="10.4,11,0,30.2" Width="150" Height="34"/>
+
+        <TextBox Name="InsertNome"  Grid.Row="2" Grid.Column="1"  HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="Bold" FontSize="14" Margin="10.4,13.4,0,12.6" Width="150" Height="34">
+            <TextBox.Text>
+                <Binding Path="Nome" NotifyOnValidationError="True">
+                    <Binding.ValidationRules>
+                        <local:RequiredRule/>
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
+        </TextBox>
+        <TextBox Name="InsertNumeroInterno"  Grid.Row="3" Grid.Column="1"  HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="Bold" FontSize="14" Margin="10.4,11,0,30.2" Width="150" Height="34">
+            <TextBox.Text>
+                <Binding Path="NumeroInterno" NotifyOnValidationError="True">
+                    <Binding.ValidationRules>
+                        <local:IntRule/>
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
+        </TextBox>
+        <TextBox Name="InsertNacionalidade"  Grid.Row="4" Grid.Column="1"  HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="Bold" FontSize="14" Margin="10.4,11,0,30.2" Width="150" Height="34">
+            <TextBox.Text>
+                <Binding Path="Nacionalidade" NotifyOnValidationError="True">
+                    <Binding.ValidationRules>
+                        <local:RequiredRule/>
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
+        </TextBox>
+        <TextBox Name="InsertEmail" Grid.Row="5" Grid.Column="1"  HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="Bold" FontSize="14" Margin="10.4,11,0,30.2" Width="150" Height="34">
+            <TextBox.Text>
+                <Binding Path="Email" NotifyOnValidationError="True">
+                    <Binding.ValidationRules>
+                        <local:RequiredRule/>
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
+        </TextBox>
+        <TextBox Name="InsertDataDeNascimento"  Grid.Row="6" Grid.Column="1"  HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="Bold" FontSize="14" Margin="10.4,13.4,0,12.6" Width="150" Height="34">
+            <TextBox.Text>
+                <Binding Path="DataDeNascimento" NotifyOnValidationError="True">
+                    <Binding.ValidationRules>
+                        <local:RequiredRule/>
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
+        </TextBox>
+
+        <TextBox Name="InsertBI"  Grid.Row="7" Grid.Column="1"  HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="Bold" FontSize="14" Margin="10.4,11,0,30.2" Width="150" Height="34">
+            <TextBox.Text>
+                <Binding Path="NumeroDoBI" NotifyOnValidationError="True">
+                    <Binding.ValidationRules>
+                        <local:IntRule/>
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
+        </TextBox>
+        <TextBox Name="InsertMorada"  Grid.Row="2" Grid.Column="3"  HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="Bold" FontSize="14" Margin="10.4,13.4,0,12.6" Width="150" Height="34">
+            <TextBox.Text>
+                <Binding Path="Morada" NotifyOnValidationError="True">
+                    <Binding.ValidationRules>
+                        <local:RequiredRule/>
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
+        </TextBox>
+        <TextBox Name="InsertNumeroDaPorta"  Grid.Row="3" Grid.Column="3"  HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="Bold" FontSize="14" Margin="10.4,11,0,30.2" Width="150" Height="34">
+            <TextBox.Text>
+                <Binding Path="NumeroDaPorta" NotifyOnValidationError="True">
+                    <Binding.ValidationRules>
+                        <local:IntRule/>
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
+        </TextBox>
+        <TextBox Name="InsertAndar"  Grid.Row="4" Grid.Column="3"  HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="Bold" FontSize="14" Margin="10.4,11,0,30.2" Width="150" Height="34">
+            <TextBox.Text>
+                <Binding Path="Andar" NotifyOnValidationError="True">
+                    <Binding.ValidationRules>
+                        <local:RequiredRule/>
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
+        </TextBox>
+        <TextBox Name="InsertCidade"  Grid.Row="5" Grid.Column="3"  HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="Bold" FontSize="14" Margin="10.4,13.4,0,12.6" Width="150" Height="34">
+            <TextBox.Text>
+                <Binding Path="Cidade" NotifyOnValidationError="True">
+                    <Binding.ValidationRules>
+                        <local:RequiredRule/>
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
+        </TextBox>
+        <TextBox Name="InsertDistrito"  Grid.Row="6" Grid.Column="3"  HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="Bold" FontSize="14" Margin="10.4,11,0,30.2" Width="150" Height="34">
+            <TextBox.Text>
+                <Binding Path="Distrito" NotifyOnValidationError="True">
+                    <Binding.ValidationRules>
+                        <local:RequiredRule/>
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
+        </TextBox>
+        <TextBox Name="InsertCodigoPostal"  Grid.Row="7" Grid.Column="3"  HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="Bold" FontSize="14" Margin="10.4,11,0,30.2" Width="150" Height="34">
+            <TextBox.Text>
+                <Binding Path="CodigoPostal" NotifyOnValidationError="True">
+                    <Binding.ValidationRules>
+                        <local:RequiredRule/>
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
+        </TextBox>
+        <TextBox Name="InsertTelefone"  Grid.Row="2" Grid.Column="5"  HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="Bold" FontSize="14" Margin="10.4,11,0,30.2" Width="150" Height="34">
+            <TextBox.Text>
+                <Binding Path="Telefone" NotifyOnValidationError="True">
+                    <Binding.ValidationRules>
+                        <local:IntRule/>
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
+        </TextBox>
         <CheckBox Name="InsertPartilhaMobilidade" Grid.Row="3" Grid.Column="4" Margin="10.4,11,0,30.2" IsChecked="{Binding Path=PartilhaMobilidade}">Partilha Mobilidade</CheckBox>
         <CheckBox Name="InsertFuncionario" Grid.Row="4" Grid.Column="4" Margin="10.4,11,0,30.2" IsChecked="{Binding Path=IsFuncionario}">Funcionário</CheckBox>
         <CheckBox Name="InsertDadosVerificados" Grid.Row="5" Grid.Column="4" Margin="10.4,11,0,30.2" IsChecked="{Binding Path=IsDadosVerificados}">Dados Verificados</CheckBox>
+        <CheckBox Name="InsertIsMobilidade" Grid.Row="6" Grid.Column="4" Margin="10.4,11,0,30.2" IsChecked="{Binding Path=IsMobilidade}">Em Mobilidade</CheckBox>
         <Button Name="ButtonOk" IsDefault="True" Grid.Row="7" Grid.Column="2" Margin="15,108,15,-52" Click="Edit_OnClick">OK</Button>
         <Button Name="ButtonCancel" IsCancel="True" Grid.Row="7" Grid.Column ="3" Margin="35,108,38,-52" Click="cancelButton_Click">Cancel</Button>
     </Grid>

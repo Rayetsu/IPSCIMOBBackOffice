@@ -26,7 +26,7 @@
         <Button Name="Editar" IsDefault="True" Grid.Row="5" Grid.Column ="0" Height="20" Width="60" Margin="15,73,14.6,30.2" Click="Edit_OnClick">Editar</Button>
         <Button Name="Remover" IsDefault="True" Grid.Row="7" Grid.Column ="0" Height="20" Width="60" Margin="15,25,14.6,-44.2" Click="Remove_OnClick">Remover</Button>
         <Button Name="Voltar" IsCancel="True" Grid.Row="8" Grid.Column ="0" Height="20" Width="60" Margin="15,92,14.6,-110.4">Voltar</Button>
-        <ListBox Name="listBoxInfo" Grid.Column="1" Grid.RowSpan="3" Margin="17,32,17,6" Width="150" Height="100" Grid.Row="5" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" SelectionChanged="ListBoxInfo_SelectionChanged" IsSynchronizedWithCurrentItem="True" ScrollViewer.VerticalScrollBarVisibility="Visible" />
+        <ListBox Name="listBoxInfo" Grid.Column="1" Grid.RowSpan="3" Margin="17,32,17,6" Width="320" Height="100" Grid.Row="5" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" SelectionChanged="ListBoxInfo_SelectionChanged" IsSynchronizedWithCurrentItem="True" ScrollViewer.VerticalScrollBarVisibility="Visible" />
         <DataGrid Name="DataGridInfo" Grid.Column="1" Grid.Row="8" HorizontalAlignment="Left" Height="250" Width="850" Margin="10,25,0,-35"  VerticalAlignment="Top" ScrollViewer.VerticalScrollBarVisibility="Visible"/>
     </Grid>
 </Window>

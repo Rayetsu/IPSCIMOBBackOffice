@@ -271,6 +271,7 @@ namespace IPSCIMOBBackOffice
                     c.IsDadosVerificados = (bool)dr["IsDadosVerificados"];
                     c.EmailConfirmed = (bool)dr["EmailConfirmed"];        
                     c.UserName = (string)dr["UserName"];
+                    c.IsMobilidade = (bool)dr["IsMobilidade"];
 
                     users.Add(c);
                 }
@@ -335,26 +336,28 @@ namespace IPSCIMOBBackOffice
                 "[CodigoPostal] = @codigoPostal," +
                 " [Telefone] = @telefone," +
                 " [PartilhaMobilidade] = @partilhaMobilidade, " +
-                "[IsFuncionario] = @isFuncionario, [IsDadosVerificados] = @isDadosVerificados WHERE ([Id] = @id)";
+                "[IsFuncionario] = @isFuncionario, [IsDadosVerificados] = @isDadosVerificados, " +
+                "[IsMobilidade] = @isMobilidade WHERE ([Id] = @id)";
 
             cmd.CommandText = sql;
 
             cmd.Parameters.AddWithValue("@nome", user.Nome);
             cmd.Parameters.AddWithValue("@nacionalidade", user.Nacionalidade);
             cmd.Parameters.AddWithValue("@email", user.Email);
-            cmd.Parameters.AddWithValue("@dataDeNascimento", user.DataDeNascimento.ToString());
+            cmd.Parameters.AddWithValue("@dataDeNascimento", user.DataDeNascimento);
             cmd.Parameters.AddWithValue("@numeroDoBI", user.NumeroDoBI);
             cmd.Parameters.AddWithValue("@numeroInterno", user.NumeroInterno);
             cmd.Parameters.AddWithValue("@morada", user.Morada);
-            cmd.Parameters.AddWithValue("@numeroDaPorta", user.NumeroDaPorta.ToString());
+            cmd.Parameters.AddWithValue("@numeroDaPorta", user.NumeroDaPorta);
             cmd.Parameters.AddWithValue("@andar", user.Andar);
             cmd.Parameters.AddWithValue("@cidade", user.Cidade);
             cmd.Parameters.AddWithValue("@distrito", user.Distrito);
             cmd.Parameters.AddWithValue("@codigoPostal", user.CodigoPostal);
-            cmd.Parameters.AddWithValue("@telefone", user.Telefone.ToString());
-            cmd.Parameters.AddWithValue("@partilhaMobilidade", user.PartilhaMobilidade.ToString());
-            cmd.Parameters.AddWithValue("@isFuncionario", user.IsFuncionario.ToString());
-            cmd.Parameters.AddWithValue("@isDadosVerificados", user.IsDadosVerificados.ToString());
+            cmd.Parameters.AddWithValue("@telefone", user.Telefone);
+            cmd.Parameters.AddWithValue("@partilhaMobilidade", user.PartilhaMobilidade);
+            cmd.Parameters.AddWithValue("@isFuncionario", user.IsFuncionario);
+            cmd.Parameters.AddWithValue("@isDadosVerificados", user.IsDadosVerificados);
+            cmd.Parameters.AddWithValue("@isMobilidade", user.IsMobilidade);
             cmd.Parameters.AddWithValue("@id", user.Id);
 
             int regs = 0;
@@ -716,7 +719,7 @@ namespace IPSCIMOBBackOffice
                 {
                     InstituicaoParceira c = new InstituicaoParceira();
 
-                    c.InstituicaoParceiraID = (int)dr["InformacaoGeralID"];
+                    c.InstituicaoParceiraID = (int)dr["InstituicaoParceiraID"];
                     c.Nome = (string)dr["Nome"];
                     c.Pais = (string)dr["Pais"];
                     c.Cidade = (string)dr["Cidade"];

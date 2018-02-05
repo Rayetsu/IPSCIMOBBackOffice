@@ -89,6 +89,9 @@
       <DependentUpon>EditUtilizador.xaml</DependentUpon>
     </Compile>
     <Compile Include="Entrevista.cs" />
+    <Compile Include="EstadoCandidaturaRule.cs" />
+    <Compile Include="EstadoDocumentosBolsaRule.cs" />
+    <Compile Include="EstadoEntrevistaRule.cs" />
     <Compile Include="GestorAjudas.xaml.cs">
       <DependentUpon>GestorAjudas.xaml</DependentUpon>
     </Compile>
@@ -112,7 +115,10 @@
     </Compile>
     <Compile Include="InformacaoGeral.cs" />
     <Compile Include="InstituicaoParceira.cs" />
+    <Compile Include="IntRule.cs" />
+    <Compile Include="RequiredRule.cs" />
     <Compile Include="Roles.cs" />
+    <Compile Include="SemestreRule.cs" />
     <Compile Include="Sugestao.cs" />
     <Compile Include="UserRoles.cs" />
     <Page Include="EditAjuda.xaml">

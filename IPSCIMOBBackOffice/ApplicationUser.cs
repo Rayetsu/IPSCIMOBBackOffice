@@ -246,6 +246,17 @@ namespace IPSCIMOBBackOffice
             }
         }
 
+        bool isMobilidade;
+        public bool IsMobilidade
+        {
+            get { return isMobilidade; }
+            set
+            {
+                isMobilidade = value;
+                OnPropertyChanged(new PropertyChangedEventArgs("IsMobilidade"));
+            }
+        }
+
         public ApplicationUser()
         {
         }

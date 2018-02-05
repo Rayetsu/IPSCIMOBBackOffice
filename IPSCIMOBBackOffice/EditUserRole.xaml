@@ -23,8 +23,15 @@
         <Label Content="Role ID" Grid.Row="2" HorizontalAlignment="Left"   FontSize="12" Margin="10,10.8,0,10" Width="120" />
 
 
-        <TextBox Name="InsertRoleId" Text="{Binding Path=RoleId}" Grid.Row="2" Grid.Column="1"  HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="Bold" FontSize="14" Margin="10.4,13.4,0,12.6" Width="150" Height="34"/>
-
+        <TextBox Name="InsertRoleId"  Grid.Row="2" Grid.Column="1"  HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="Bold" FontSize="14" Margin="10.4,13.4,0,12.6" Width="150" Height="34">
+        <TextBox.Text>
+            <Binding Path="RoleId" NotifyOnValidationError="True">
+                <Binding.ValidationRules>
+                    <local:RequiredRule/>
+                </Binding.ValidationRules>
+            </Binding>
+        </TextBox.Text>
+        </TextBox>
 
         <Button Name="ButtonOk" IsDefault="True" Grid.Row="4" Margin="77,22,10,34" Click="Edit_OnClick">OK</Button>
         <Button Name="ButtonCancel" IsCancel="True" Grid.Row="4" Grid.Column ="1" Margin="57,22,114,34" Click="cancelButton_Click">Cancel</Button>

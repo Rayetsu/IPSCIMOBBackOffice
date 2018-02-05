@@ -34,11 +34,52 @@
         <Label Content="Estado" Grid.Row="6" HorizontalAlignment="Left"   FontSize="12" Margin="10,11,0,10" Width="120" Grid.ColumnSpan="2" />
 
 
-        <TextBox Name="InsertNumeroAluno" Text="{Binding Path=NumeroAluno}" Grid.Row="2" Grid.Column="1"  HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="Bold" FontSize="14" Margin="10,31,0,21" Width="150" Height="34" Grid.ColumnSpan="2"/>
-        <TextBox Name="InsertEmail" Text="{Binding Path=Email}" Grid.Row="3" Grid.Column="1"  HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="Bold" FontSize="14" Margin="10,11,0,41" Width="150" Height="34" Grid.ColumnSpan="2"/>
-        <TextBox Name="InsertNomeDoPrograma" Text="{Binding Path=NomePrograma}" Grid.Row="4" Grid.Column="1"  HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="Bold" FontSize="14" Margin="10,21,0,31" Width="150" Height="34" Grid.ColumnSpan="2"/>
-        <TextBox Name="InsertDataDeEntrevista" Text="{Binding Path=DataDeEntrevista}" Grid.Row="5" Grid.Column="1"  HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="Bold" FontSize="14" Margin="10,15,0,22" Width="150" Height="34" Grid.ColumnSpan="2"/>
-        <TextBox Name="InsertEstado" Text="{Binding Path=Estado}" Grid.Row="6" Grid.Column="1"  HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="Bold" FontSize="14" Margin="10,20,0,32" Width="150" Height="34" Grid.ColumnSpan="2"/>
+        <TextBox Name="InsertNumeroAluno"  Grid.Row="2" Grid.Column="1"  HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="Bold" FontSize="14" Margin="10,31,0,21" Width="150" Height="34" Grid.ColumnSpan="2">
+            <TextBox.Text>
+                <Binding Path="NumeroAluno" NotifyOnValidationError="True">
+                    <Binding.ValidationRules>
+                        <local:RequiredRule/>
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
+        </TextBox>
+        <TextBox Name="InsertEmail"  Grid.Row="3" Grid.Column="1"  HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="Bold" FontSize="14" Margin="10,11,0,41" Width="150" Height="34" Grid.ColumnSpan="2">
+            <TextBox.Text>
+                <Binding Path="Email" NotifyOnValidationError="True">
+                    <Binding.ValidationRules>
+                        <local:RequiredRule/>
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
+        </TextBox>
+        <TextBox Name="InsertNomeDoPrograma"  Grid.Row="4" Grid.Column="1"  HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="Bold" FontSize="14" Margin="10,21,0,31" Width="150" Height="34" Grid.ColumnSpan="2">
+            <TextBox.Text>
+                <Binding Path="NomePrograma" NotifyOnValidationError="True">
+                    <Binding.ValidationRules>
+                        <local:RequiredRule/>
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
+        </TextBox>
+        <TextBox Name="InsertDataDeEntrevista"  Grid.Row="5" Grid.Column="1"  HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="Bold" FontSize="14" Margin="10,15,0,22" Width="150" Height="34" Grid.ColumnSpan="2">
+            <TextBox.Text>
+                <Binding Path="DataDeEntrevista" NotifyOnValidationError="True">
+                    <Binding.ValidationRules>
+                        <local:RequiredRule/>
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
+        </TextBox>
+
+        <TextBox Name="InsertEstado"  Grid.Row="6" Grid.Column="1"  HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="Bold" FontSize="14" Margin="10,20,0,32" Width="150" Height="34" Grid.ColumnSpan="2">
+            <TextBox.Text>
+                <Binding Path="Estado" NotifyOnValidationError="True">
+                    <Binding.ValidationRules>
+                        <local:EstadoEntrevistaRule/>
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
+        </TextBox>
         <!--<CheckBox Name="InsertEntrevistaAtual" Grid.Row="7" Grid.Column="0" Margin="10,11,0,30" IsChecked="{Binding Path=EntrevistaAtual}">EntrevistaAtual</CheckBox>-->
 
 
