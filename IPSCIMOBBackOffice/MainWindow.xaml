@@ -28,6 +28,6 @@
                 </Menu>
             </Menu>
         </DockPanel>
-        <!--<Image Source="icons/..." />-->
+        <Image Source="icons/ipsback.png" />
     </Grid>
 </Window>
