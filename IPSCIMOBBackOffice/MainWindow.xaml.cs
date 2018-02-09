@@ -89,6 +89,13 @@ namespace IPSCIMOBBackOffice
             gE.ShowDialog();
         }
 
+        private void GestorProgramas_OnClick(object sender, RoutedEventArgs e)
+        {
+            GestorProgramas gE = new GestorProgramas();
+            gE.Title = "Gestor de Programas de Mobilidade";
+            gE.ShowDialog();
+        }
+
 
         private void Ficheiro_Sair_OnClick(object sender, RoutedEventArgs e)
         {

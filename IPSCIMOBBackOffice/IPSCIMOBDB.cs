@@ -11,8 +11,8 @@ namespace IPSCIMOBBackOffice
 {
     public class IPSCIMOBDB
     {
-        private string connectionString = "Data Source=SQL6003.site4now.net;Initial Catalog=DB_A30AB8_ipscimob;User Id=DB_A30AB8_ipscimob_admin;Password=ips12345";
-
+        private string connectionString = "Data Source=SQL6004.site4now.net;Initial Catalog=DB_A3489C_bdcimobips;User Id=DB_A3489C_bdcimobips_admin;Password=ips12345";
+        //Data Source = SQL6003.site4now.net; Initial Catalog = DB_A30A4D_ipsCimobDB; User Id = DB_A30A4D_ipsCimobDB_admin; Password=ips12345;
         public ObservableCollection<ForeignStudents> GetAlunosEstrangeiros()
         {
             ObservableCollection<ForeignStudents> alunos = new ObservableCollection<ForeignStudents>();
@@ -1427,6 +1427,175 @@ namespace IPSCIMOBBackOffice
             cmd.Parameters.AddWithValue("@nome", ajuda.Nome);
             cmd.Parameters.AddWithValue("@descricao", ajuda.Descricao);
             cmd.Parameters.AddWithValue("@id", ajuda.Id);
+
+            int regs = 0;
+
+            try
+            {
+                con.Open();
+
+                regs = cmd.ExecuteNonQuery();
+            }
+            catch (Exception exc)
+            {
+                MessageBox.Show(exc.Message);
+            }
+            finally
+            {
+                con.Close();
+            }
+
+            MessageBox.Show(regs + " registo actualizado");
+        }
+
+        public ObservableCollection<ProgramaModel> GetProgramas()
+        {
+            ObservableCollection<ProgramaModel> info = new ObservableCollection<ProgramaModel>();
+
+            SqlConnection con = new SqlConnection(connectionString);
+            SqlCommand cmd = new SqlCommand();
+
+            cmd.Connection = con;
+
+            string sql = "SELECT * FROM ProgramaModel";
+
+            cmd.CommandText = sql;
+
+            try
+            {
+                con.Open();
+
+                SqlDataReader dr;
+
+                dr = cmd.ExecuteReader();
+
+                while (dr.Read())
+                {
+                    ProgramaModel c = new ProgramaModel
+                    {
+                        ProgramaID = (int)dr["ProgramaID"],
+                        Nome = (string)dr["Nome"],
+                        Descricao = (string)dr["Descricao"],
+                        UtilizadorProfissao = (int)dr["UtilizadorProfissao"],
+                        ProgramaAtual = (bool)dr["ProgramaAtual"],
+                        PrazoCandidaturaPrimeiroSemestre = (DateTime)dr["PrazoCandidaturaPrimeiroSemestre"],
+                        PrazoCandidaturaSegundoSemestre = (DateTime)dr["PrazoCandidaturaSegundoSemestre"]
+                    };
+
+                    info.Add(c);
+                }
+
+            }
+            catch (Exception exc)
+            {
+                MessageBox.Show(exc.Message);
+            }
+            finally
+            {
+                con.Close();
+            }
+
+            return info;
+        }
+
+
+        public int InserirPrograma(ProgramaModel Programa)
+        {
+            int newId = -1;
+
+            SqlConnection con = new SqlConnection(connectionString);
+            SqlCommand cmd = new SqlCommand();
+
+            cmd.Connection = con;
+
+            string sqlInsert = "INSERT INTO [ProgramaModel] ([Nome], [Descricao], [UtilizadorProfissao], [ProgramaAtual], [PrazoCandidaturaPrimeiroSemestre], [PrazoCandidaturaSegundoSemestre]) VALUES ('" + Programa.Nome + "', '" + Programa.Descricao + "', '" + Programa.UtilizadorProfissao + "', '" + Programa.ProgramaAtual + "', '" + Programa.PrazoCandidaturaPrimeiroSemestre + "', '" + Programa.PrazoCandidaturaSegundoSemestre + "')";
+            cmd.CommandText = sqlInsert;
+
+            string sqlSelect = "SELECT ProgramaID, Nome, Descricao, UtilizadorProfissao, ProgramaAtual, PrazoCandidaturaPrimeiroSemestre, PrazoCandidaturaSegundoSemestre FROM ProgramaModel WHERE (ProgramaID = SCOPE_IDENTITY())";
+
+            int regs = 0;
+
+            try
+            {
+                con.Open();
+
+                regs = cmd.ExecuteNonQuery();
+
+                SqlDataReader dr;
+                cmd.CommandText = sqlSelect;
+                dr = cmd.ExecuteReader();
+
+                if (dr.Read())
+                    newId = (int)dr["ProgramaID"];
+            }
+            catch (Exception exc)
+            {
+                MessageBox.Show(exc.Message);
+            }
+            finally
+            {
+                con.Close();
+            }
+
+            MessageBox.Show(regs + " registo adicionado (" + newId + ")");
+
+            return newId;
+        }
+
+        public void RemoverPrograma(int id)
+        {
+            SqlConnection con = new SqlConnection(connectionString);
+            SqlCommand cmd = new SqlCommand();
+
+            cmd.Connection = con;
+
+            string sql = "DELETE FROM [ProgramaModel] WHERE ([ProgramaID] = " + id.ToString() + ")";
+            cmd.CommandText = sql;
+
+            int regs = 0;
+
+            try
+            {
+                con.Open();
+
+                regs = cmd.ExecuteNonQuery();
+            }
+            catch (Exception exc)
+            {
+                MessageBox.Show(exc.Message);
+            }
+            finally
+            {
+                con.Close();
+            }
+
+            MessageBox.Show(regs + " registo apagado");
+        }
+
+        public void ActualizarPrograma(ProgramaModel programa)
+        {
+            SqlConnection con = new SqlConnection(connectionString);
+            SqlCommand cmd = new SqlCommand();
+
+            cmd.Connection = con;
+
+            string sql = "UPDATE [ProgramaModel] SET [Nome] = @nome, " +
+                "[Descricao] = @descricao, " +
+                "[UtilizadorProfissao] = @utilizadorProfissao, " +
+                "[ProgramaAtual] = @programaAtual, " +
+                "[PrazoCandidaturaPrimeiroSemestre] = @prazoCandidaturaPrimeiroSemestre, " +
+                "[PrazoCandidaturaSegundoSemestre] = @prazoCandidaturaSegundoSemestre WHERE ([ProgramaID] = @id)";
+
+
+            cmd.CommandText = sql;
+
+            cmd.Parameters.AddWithValue("@nome", programa.Nome);
+            cmd.Parameters.AddWithValue("@descricao", programa.Descricao);
+            cmd.Parameters.AddWithValue("@utilizadorProfissao", programa.UtilizadorProfissao);
+            cmd.Parameters.AddWithValue("@programaAtual", programa.ProgramaAtual);
+            cmd.Parameters.AddWithValue("@prazoCandidaturaPrimeiroSemestre", programa.PrazoCandidaturaPrimeiroSemestre);
+            cmd.Parameters.AddWithValue("@prazoCandidaturaSegundoSemestre", programa.PrazoCandidaturaSegundoSemestre);
+            cmd.Parameters.AddWithValue("@id", programa.ProgramaID);
 
             int regs = 0;
 

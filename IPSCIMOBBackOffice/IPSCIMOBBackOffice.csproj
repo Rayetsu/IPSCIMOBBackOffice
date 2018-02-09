@@ -79,6 +79,9 @@
     <Compile Include="EditInstituicao.xaml.cs">
       <DependentUpon>EditInstituicao.xaml</DependentUpon>
     </Compile>
+    <Compile Include="EditPrograma.xaml.cs">
+      <DependentUpon>EditPrograma.xaml</DependentUpon>
+    </Compile>
     <Compile Include="EditSugestao.xaml.cs">
       <DependentUpon>EditSugestao.xaml</DependentUpon>
     </Compile>
@@ -107,6 +110,9 @@
     <Compile Include="GestorInstituicoes.xaml.cs">
       <DependentUpon>GestorInstituicoes.xaml</DependentUpon>
     </Compile>
+    <Compile Include="GestorProgramas.xaml.cs">
+      <DependentUpon>GestorProgramas.xaml</DependentUpon>
+    </Compile>
     <Compile Include="GestorSugestoes.xaml.cs">
       <DependentUpon>GestorSugestoes.xaml</DependentUpon>
     </Compile>
@@ -116,6 +122,7 @@
     <Compile Include="InformacaoGeral.cs" />
     <Compile Include="InstituicaoParceira.cs" />
     <Compile Include="IntRule.cs" />
+    <Compile Include="ProgramaModel.cs" />
     <Compile Include="RequiredRule.cs" />
     <Compile Include="Roles.cs" />
     <Compile Include="SemestreRule.cs" />
@@ -142,6 +149,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="EditInstituicao.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="EditPrograma.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -178,6 +189,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="GestorInstituicoes.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GestorProgramas.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
